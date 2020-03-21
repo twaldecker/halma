@@ -1,9 +1,0 @@
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES2016",
-        "noImplicitAny": false,
-        "sourceMap": false,
-        "esModuleInterop": true,
-    }
-}
