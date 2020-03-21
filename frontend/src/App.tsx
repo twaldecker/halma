@@ -73,26 +73,27 @@ function HoleLine(x: number, y: number, count: number, step: number) {
 
 function Holes(base: number, startx: number, countLines: number) {
   let smallTriangle = base / countLines;
+  let yPos = (line) => starty+height(smallTriangle)*line
   let starty = 6
   return (
     <>
-      {Hole(startx+base/2, starty)}
-      {HoleLine(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*1, 2, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*2, 3, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*3, 4, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*0, starty+height(smallTriangle)*4, 13, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*1, starty+height(smallTriangle)*5, 12, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*2, starty+height(smallTriangle)*6, 11, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*3, starty+height(smallTriangle)*7, 10, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*4, starty+height(smallTriangle)*8, 9, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*3, starty+height(smallTriangle)*9, 10, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*2, starty+height(smallTriangle)*10, 11, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*1, starty+height(smallTriangle)*11, 12, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*0, starty+height(smallTriangle)*12, 13, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*13, 4, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*14, 3, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*15, 2, smallTriangle)}
-      {Hole(startx+base/2, starty+height(smallTriangle)*16)}
+      {HoleLine(startx+base/2, yPos(0), 1, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*1, yPos(1), 2, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*2, yPos(2), 3, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*3, yPos(3), 4, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*0, yPos(4), 13, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*1, yPos(5), 12, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*2, yPos(6), 11, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*3, yPos(7), 10, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*4, yPos(8), 9, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*3, yPos(9), 10, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*2, yPos(10), 11, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*1, yPos(11), 12, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*0, yPos(12), 13, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*3, yPos(13), 4, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*2, yPos(14), 3, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*1, yPos(15), 2, smallTriangle)}
+      {HoleLine(startx+base/2, yPos(16), 1, smallTriangle)}
     </>
   )
 }
