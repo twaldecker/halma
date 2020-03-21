@@ -4,9 +4,9 @@ import "./App.css";
 import client from './feathers';
 
 
-const messageService = client.service('game');
+const gameService = client.service('game');
 
-messageService.on('created', message => console.log('Created a message', message));
+gameService.on('created', message => console.log('Created a game', message));
 
 interface GameState {
   color: string
@@ -199,7 +199,15 @@ function App() {
   const [game, setGame] = useState(initialGame);
 
   const feathersSetGame = async game => {
-    await client.service('game').update(1, {data: game});
+    // Create first game
+    let findResult = await gameService.find();
+
+    if (findResult.total == 0) {
+      await gameService.create({data: game});
+    } else {
+      await gameService.update(0, {data: game});
+    }
+
     setGame(game)
   }
 
