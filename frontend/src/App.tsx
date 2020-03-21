@@ -14,9 +14,7 @@ function height(length: number) {
 
 function Pin(x: number, y: number, pin: GameState, pinClick) {
   return (
-    <>
-      <circle r="8" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#000`:''} onClick={pinClick}></circle>
-    </>
+    <circle r="8" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#000`:''} onClick={pinClick} />
   );
 }
 
@@ -32,10 +30,23 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[], s
     setGame(newGame)
   }
 
+  const holeClick = _ => {
+    let pin = game.find(s => s.sel)
+    if(pin){
+      let newGame = game.filter(s => !s.sel);
+      newGame.push({...pin, row, i} as GameState)
+      setGame(newGame)
+    }
+    else {
+      console.log("no pin selected!")
+    }
+
+  }
+
   if(pin)
     return Pin(x, y, pin, pinClick)
   return (
-    <circle r="3" fill="#777" cx={x} cy={y} />
+    <circle r="3" fill="#777" cx={x} cy={y} onClick={holeClick} />
   )
 }
 
