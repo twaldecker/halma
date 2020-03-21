@@ -13,6 +13,12 @@ function Pin(x: number, y: number, color: string) {
   );
 }
 
+function Hole(x: number, y: number) {
+  return (
+    <circle r="3" fill="#333" cx={x} cy={y} />
+  )
+}
+
 function Triangle(
   base: number,
   startx: number,
@@ -23,17 +29,17 @@ function Triangle(
 
   let lines: any[] = [];
 
-  let small_triangle = 500 / countLines;
+  let smallTriangle = base / countLines;
 
   for (let i = 1; i < countLines; i++) {
     lines.push({
-      ax: startx + (small_triangle / 2) * i,
-      ay: starty + height(small_triangle) * i,
-      bx: startx + base - (small_triangle / 2) * i,
-      by: starty + height(small_triangle) * i,
-      cx: startx + small_triangle * i,
+      ax: startx + (smallTriangle / 2) * i,
+      ay: starty + height(smallTriangle) * i,
+      bx: startx + base - (smallTriangle / 2) * i,
+      by: starty + height(smallTriangle) * i,
+      cx: startx + smallTriangle * i,
       cy: starty,
-      dx: startx + base - small_triangle * i,
+      dx: startx + base - smallTriangle * i,
       dy: starty
     });
   }
@@ -45,15 +51,30 @@ function Triangle(
         fill="none"
         stroke="#999"
       />
-      {lines.map(x => (
+      {lines.map(i => (
         <path
-          d={`M ${x.cx} ${x.cy} L ${x.ax} ${x.ay} L ${x.bx} ${x.by} L ${x.dx} ${x.dy}`}
+          d={`M ${i.cx} ${i.cy} L ${i.ax} ${i.ay} L ${i.bx} ${i.by} L ${i.dx} ${i.dy}`}
           fill="none"
           stroke="#999"
         />
       ))}
     </>
   );
+}
+
+function Holes(base: number, startx: number, countLines: number) {
+  let smallTriangle = base / countLines;
+  let starty = 5
+  return (
+    <>
+      {Hole(startx+base/2, starty)}
+      {Hole(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*1)}
+      {Hole(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*2)}
+      {Hole(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*3)}
+      {Hole(startx+base/2-smallTriangle/2*4, starty+height(smallTriangle)*4)}
+
+    </>
+  )
 }
 
 function App() {
@@ -75,8 +96,10 @@ function App() {
       >
         {Triangle(base, startx, starty, countLines)}
       </g>
+
+      {Holes(base, startx, countLines)}
+
       {Pin(10, 150, "#f0f")}
-      {Pin(510, 150, "#f00")}
     </svg>
   );
 }
