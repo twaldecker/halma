@@ -11,11 +11,15 @@ export default function(app: Application) {
   app.on('connection', (connection: any) => {
     // On a new real-time connection, add it to the anonymous channel
     app.channel('anonymous').join(connection);
+    console.log("Connected");
   });
 
   app.on('login', (authResult: any, { connection }: any) => {
     // connection can be undefined if there is no
     // real-time connection, e.g. when logging in via REST
+
+    console.log(connection);
+
     if(connection) {
       // Obtain the logged in user from the connection
       // const user = connection.user;
@@ -46,6 +50,8 @@ export default function(app: Application) {
     // To publish only for a specific event use `app.publish(eventname, () => {})`
 
     console.log('Publishing all events to all authenticated users. See `channels.js` and https://docs.feathersjs.com/api/channels.html for more information.'); // eslint-disable-line
+
+    console.log(data);
 
     // e.g. to publish all service events to all authenticated users use
     return app.channel('authenticated');

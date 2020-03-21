@@ -1,5 +1,17 @@
 import React, { useState } from "react";
+import io from 'socket.io-client';
+import feathers from '@feathersjs/feathers';
+import socketio from '@feathersjs/socketio-client';
 import "./App.css";
+
+const socket = io('http://localhost:3030');
+const client = feathers();
+
+client.configure(socketio(socket));
+
+const messageService = client.service('game');
+
+messageService.on('created', message => console.log('Created a message', message));
 
 interface GameState {
   color: string
