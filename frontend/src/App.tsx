@@ -46,7 +46,10 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[], s
   if(pin)
     return Pin(x, y, pin, pinClick)
   return (
-    <circle r="3" fill="#777" cx={x} cy={y} onClick={holeClick} />
+    <>
+      <circle r="3" fill="#777" cx={x} cy={y} />
+      <circle r="15" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={holeClick} />
+    </>
   )
 }
 
