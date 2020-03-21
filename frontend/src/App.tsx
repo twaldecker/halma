@@ -73,14 +73,26 @@ function HoleLine(x: number, y: number, count: number, step: number) {
 
 function Holes(base: number, startx: number, countLines: number) {
   let smallTriangle = base / countLines;
-  let starty = 5
+  let starty = 6
   return (
     <>
       {Hole(startx+base/2, starty)}
       {HoleLine(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*1, 2, smallTriangle)}
       {HoleLine(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*2, 3, smallTriangle)}
       {HoleLine(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*3, 4, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*4, starty+height(smallTriangle)*4, 5, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*0, starty+height(smallTriangle)*4, 13, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*1, starty+height(smallTriangle)*5, 12, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*2, starty+height(smallTriangle)*6, 11, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*3, starty+height(smallTriangle)*7, 10, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*4, starty+height(smallTriangle)*8, 9, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*3, starty+height(smallTriangle)*9, 10, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*2, starty+height(smallTriangle)*10, 11, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*1, starty+height(smallTriangle)*11, 12, smallTriangle)}
+      {HoleLine(startx+smallTriangle/2*0, starty+height(smallTriangle)*12, 13, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*13, 4, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*14, 3, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*15, 2, smallTriangle)}
+      {Hole(startx+base/2, starty+height(smallTriangle)*16)}
     </>
   )
 }
@@ -106,8 +118,6 @@ function App() {
       </g>
 
       {Holes(base, startx, countLines)}
-
-      {Pin(10, 150, "#f0f")}
     </svg>
   );
 }
