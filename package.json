@@ -1,0 +1,15 @@
+{
+  "name": "halma",
+  "version": "1.0.0",
+  "description": "A halma game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Waldecker <thomas.waldecker@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@feathersjs/feathers": "^4.5.2",
+    "ts-node": "^8.7.0"
+  }
+}
