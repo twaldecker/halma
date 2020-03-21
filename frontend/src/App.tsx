@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import client from './feathers';
 
 interface GameState {
   color: string
@@ -189,7 +190,12 @@ function App() {
     {color: '#f00', row: 16, i: 0, sel: false},
   ]
 
-    const [game, setGame] = useState(initialGame);
+  const [game, setGame] = useState(initialGame);
+
+  const feathersSetGame = async game => {
+    await client.service('game').update(1, {data: game});
+    setGame(game)
+  }
 
 
   return (
@@ -204,7 +210,7 @@ function App() {
         {Triangle(base, startx, starty, countLines)}
       </g>
 
-      {Holes(base, startx, countLines, game, setGame)}
+      {Holes(base, startx, countLines, game, feathersSetGame)}
     </svg>
   );
 }
