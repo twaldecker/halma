@@ -4,12 +4,16 @@
   "description": "A halma game",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node ./src/app.ts"
   },
   "author": "Thomas Waldecker <thomas.waldecker@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@feathersjs/express": "^4.5.2",
     "@feathersjs/feathers": "^4.5.2",
-    "ts-node": "^8.7.0"
+    "@feathersjs/socketio": "^4.5.2",
+    "@types/express": "^4.17.3",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3"
   }
 }
