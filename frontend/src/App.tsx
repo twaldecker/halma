@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import io from 'socket.io-client';
 import "./App.css";
 import client from './feathers';
 
@@ -212,10 +211,9 @@ function App() {
   }
 
   //untested
-  gameService.on('updated', data => {
-    setGame(data)
+  gameService.on('updated', result => {
+    setGame(result.data)
   })
-
 
   return (
     <svg viewBox="0 0 520 600" style={{ maxHeight: "100vh", width: "100%" }}>

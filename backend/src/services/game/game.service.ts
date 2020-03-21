@@ -13,8 +13,7 @@ declare module '../../declarations' {
 
 export default function (app: Application) {
   const options = {
-    paginate: app.get('paginate'),
-    room: app.get('room')
+    paginate: app.get('paginate')
   };
 
   // Initialize our service with any options it requires
@@ -22,6 +21,8 @@ export default function (app: Application) {
 
   // Get our initialized service so that we can register hooks
   const service = app.service('game');
+
+  service.on('updated', (message, context) => console.log('updated', message));
 
   service.hooks(hooks);
 }
