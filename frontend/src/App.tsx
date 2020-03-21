@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import "./App.css";
 
+interface GameState {
+  color: string
+  row: number
+  i: number
+  sel: boolean
+}
+
 function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
 
-function Pin(x: number, y: number, color: string) {
+function Pin(x: number, y: number, pin: GameState) {
   return (
     <>
-      <circle r="5" fill={color} cx={x} cy={y}></circle>
+      <circle r="5" fill={pin.color} cx={x} cy={y}></circle>
     </>
   );
 }
 
-function Hole(x: number, y: number, row: number, i: number, game) {
-  if(game[0].row == row && game[0].i == i)
-    return Pin(x, y, game[0].color)
+function Hole(x: number, y: number, row: number, i: number, game: GameState[]) {
+  let pin = game.find(j => j.row == row && j.i == i)
+  if(pin)
+    return Pin(x, y, pin)
   return (
     <circle r="3" fill="#333" cx={x} cy={y} />
   )
@@ -109,7 +117,56 @@ function App() {
 
   //const [game, setGame] = useState([]);
 
-  let game = [{color: '#f0f', row: 3, i: 2}]
+  let game: GameState[] = [
+    {color: '#00f', row: 4, i: 12, sel: false},
+    {color: '#00f', row: 4, i: 11, sel: false},
+    {color: '#00f', row: 4, i: 10, sel: false},
+    {color: '#00f', row: 4, i: 9, sel: false},
+    {color: '#00f', row: 4, i: 8, sel: false},
+    {color: '#00f', row: 5, i: 11, sel: false},
+    {color: '#00f', row: 5, i: 10, sel: false},
+    {color: '#00f', row: 5, i: 9, sel: false},
+    {color: '#00f', row: 5, i: 8, sel: false},
+    {color: '#00f', row: 6, i: 10, sel: false},
+    {color: '#00f', row: 6, i: 9, sel: false},
+    {color: '#00f', row: 6, i: 8, sel: false},
+    {color: '#00f', row: 7, i: 9, sel: false},
+    {color: '#00f', row: 7, i: 8, sel: false},
+    {color: '#00f', row: 8, i: 8, sel: false},
+
+    {color: '#0f0', row: 4, i: 0, sel: false},
+    {color: '#0f0', row: 4, i: 1, sel: false},
+    {color: '#0f0', row: 4, i: 2, sel: false},
+    {color: '#0f0', row: 4, i: 3, sel: false},
+    {color: '#0f0', row: 4, i: 4, sel: false},
+    {color: '#0f0', row: 5, i: 0, sel: false},
+    {color: '#0f0', row: 5, i: 1, sel: false},
+    {color: '#0f0', row: 5, i: 2, sel: false},
+    {color: '#0f0', row: 5, i: 3, sel: false},
+    {color: '#0f0', row: 6, i: 0, sel: false},
+    {color: '#0f0', row: 6, i: 1, sel: false},
+    {color: '#0f0', row: 6, i: 2, sel: false},
+    {color: '#0f0', row: 7, i: 0, sel: false},
+    {color: '#0f0', row: 7, i: 1, sel: false},
+    {color: '#0f0', row: 8, i: 0, sel: false},
+
+    {color: '#f00', row: 12, i: 4, sel: false},
+    {color: '#f00', row: 12, i: 5, sel: false},
+    {color: '#f00', row: 12, i: 6, sel: false},
+    {color: '#f00', row: 12, i: 7, sel: false},
+    {color: '#f00', row: 12, i: 8, sel: false},
+    {color: '#f00', row: 13, i: 0, sel: false},
+    {color: '#f00', row: 13, i: 1, sel: false},
+    {color: '#f00', row: 13, i: 2, sel: false},
+    {color: '#f00', row: 13, i: 3, sel: false},
+    {color: '#f00', row: 14, i: 0, sel: false},
+    {color: '#f00', row: 14, i: 1, sel: false},
+    {color: '#f00', row: 14, i: 2, sel: false},
+    {color: '#f00', row: 15, i: 0, sel: false},
+    {color: '#f00', row: 15, i: 1, sel: false},
+    {color: '#f00', row: 16, i: 0, sel: false},
+
+  ]
 
 
   return (
