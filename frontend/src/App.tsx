@@ -12,18 +12,28 @@ function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
 
-function Pin(x: number, y: number, pin: GameState) {
+function Pin(x: number, y: number, pin: GameState, pinClick) {
   return (
     <>
-      <circle r="8" fill={pin.color} cx={x} cy={y}></circle>
+      <circle r="8" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#000`:''} onClick={pinClick}></circle>
     </>
   );
 }
 
-function Hole(x: number, y: number, row: number, i: number, game: GameState[]) {
-  let pin = game.find(j => j.row == row && j.i == i)
+function Hole(x: number, y: number, row: number, i: number, game: GameState[], setGame) {
+
+  const currentCoordinates = n => n.row == row && n.i == i
+
+  let pin = game.find(currentCoordinates)
+
+  const pinClick = _ => {
+    let newGame = game.filter(s => !currentCoordinates(s)).map(s => ({...s, sel: false}))
+    newGame.push({...pin, sel: true} as GameState)
+    setGame(newGame)
+  }
+
   if(pin)
-    return Pin(x, y, pin)
+    return Pin(x, y, pin, pinClick)
   return (
     <circle r="3" fill="#777" cx={x} cy={y} />
   )
@@ -72,39 +82,39 @@ function Triangle(
   );
 }
 
-function HoleLine(x: number, y: number, row: number, step: number, base: number, game) {
+function HoleLine(x: number, y: number, row: number, step: number, base: number, game, setGame) {
   let holesX: number[] = [];
   let yPos = (line) => y + height(step) * line
   for (let i = 0; i < Game[row]; i++)
     holesX.push(x+i*step)
 
-  return holesX.map((x, i) => Hole(x+base/2-step/2*(Game[row]-1), yPos(row), row, i, game))
+  return holesX.map((x, i) => Hole(x+base/2-step/2*(Game[row]-1), yPos(row), row, i, game, setGame))
 }
 
 const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
-function Holes(base: number, startx: number, countLines: number, game) {
+function Holes(base: number, startx: number, countLines: number, game, setGame) {
   let smallTriangle = base / countLines;
   let starty = 6
   return (
     <>
-      {HoleLine(startx, starty, 0, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 1, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 2, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 3, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 4, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 5, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 6, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 7, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 8, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 9, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 10, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 11, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 12, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 13, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 14, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 15, smallTriangle, base, game)}
-      {HoleLine(startx, starty, 16, smallTriangle, base, game)}
+      {HoleLine(startx, starty, 0, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 1, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 2, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 3, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 4, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 5, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 6, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 7, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 8, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 9, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 10, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 11, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 12, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 13, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 14, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 15, smallTriangle, base, game, setGame)}
+      {HoleLine(startx, starty, 16, smallTriangle, base, game, setGame)}
     </>
   )
 }
@@ -115,9 +125,7 @@ function App() {
   let starty = 150;
   let countLines = 12;
 
-  //const [game, setGame] = useState([]);
-
-  let game: GameState[] = [
+  let initialGame: GameState[] = [
     {color: '#00f', row: 4, i: 12, sel: false},
     {color: '#00f', row: 4, i: 11, sel: false},
     {color: '#00f', row: 4, i: 10, sel: false},
@@ -165,8 +173,9 @@ function App() {
     {color: '#f00', row: 15, i: 0, sel: false},
     {color: '#f00', row: 15, i: 1, sel: false},
     {color: '#f00', row: 16, i: 0, sel: false},
-
   ]
+
+    const [game, setGame] = useState(initialGame);
 
 
   return (
@@ -181,7 +190,7 @@ function App() {
         {Triangle(base, startx, starty, countLines)}
       </g>
 
-      {Holes(base, startx, countLines, game)}
+      {Holes(base, startx, countLines, game, setGame)}
     </svg>
   );
 }
