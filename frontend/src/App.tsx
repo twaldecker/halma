@@ -211,6 +211,11 @@ function App() {
     setGame(game)
   }
 
+  //untested
+  gameService.on('updated', data => {
+    setGame(data)
+  })
+
 
   return (
     <svg viewBox="0 0 520 600" style={{ maxHeight: "100vh", width: "100%" }}>
