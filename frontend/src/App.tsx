@@ -62,17 +62,25 @@ function Triangle(
   );
 }
 
+function HoleLine(x: number, y: number, count: number, step: number) {
+  let holesX: number[] = [];
+
+  for (let i = 0; i < count; i++)
+    holesX.push(x+i*step)
+
+  return holesX.map(x => Hole(x, y))
+}
+
 function Holes(base: number, startx: number, countLines: number) {
   let smallTriangle = base / countLines;
   let starty = 5
   return (
     <>
       {Hole(startx+base/2, starty)}
-      {Hole(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*1)}
-      {Hole(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*2)}
-      {Hole(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*3)}
-      {Hole(startx+base/2-smallTriangle/2*4, starty+height(smallTriangle)*4)}
-
+      {HoleLine(startx+base/2-smallTriangle/2*1, starty+height(smallTriangle)*1, 2, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*2, starty+height(smallTriangle)*2, 3, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*3, starty+height(smallTriangle)*3, 4, smallTriangle)}
+      {HoleLine(startx+base/2-smallTriangle/2*4, starty+height(smallTriangle)*4, 5, smallTriangle)}
     </>
   )
 }
