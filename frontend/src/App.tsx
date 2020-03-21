@@ -15,7 +15,7 @@ function height(length: number) {
 function Pin(x: number, y: number, pin: GameState) {
   return (
     <>
-      <circle r="5" fill={pin.color} cx={x} cy={y}></circle>
+      <circle r="8" fill={pin.color} cx={x} cy={y}></circle>
     </>
   );
 }
@@ -25,7 +25,7 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[]) {
   if(pin)
     return Pin(x, y, pin)
   return (
-    <circle r="3" fill="#333" cx={x} cy={y} />
+    <circle r="3" fill="#777" cx={x} cy={y} />
   )
 }
 
