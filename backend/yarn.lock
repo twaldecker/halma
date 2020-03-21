@@ -209,7 +209,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@feathersjs/commons@^4.5.2":
+"@feathersjs/adapter-commons@^4.3.6":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@feathersjs/adapter-commons/-/adapter-commons-4.5.2.tgz#10fdf4f6b305b313fb8b4dcc52838e3d89d57279"
+  integrity sha512-7NF4WO/R0OOZo6/mPnMml4Hz+Ynr0JMCp4TDO6JIf3ITAwc78A7b6jrORw1sw3Cq3hkD0sC342sk7mRk3BwPDg==
+  dependencies:
+    "@feathersjs/commons" "^4.5.2"
+    "@feathersjs/errors" "^4.5.2"
+    "@feathersjs/feathers" "^4.5.2"
+
+"@feathersjs/commons@^4.3.0", "@feathersjs/commons@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-4.5.2.tgz#86321aa7b6294bddbab550ffcce79633039940be"
   integrity sha512-nlgDnM4wxjJdernzNjDMn592H6YKKOhnwFOAkM7rJvFU/qfagBJtbFh1Q4ylRhMd+zK0u/Dg2nV3D5GxJNyDBA==
@@ -223,7 +232,7 @@
     config "^3.2.6"
     debug "^4.1.1"
 
-"@feathersjs/errors@^4.5.1", "@feathersjs/errors@^4.5.2":
+"@feathersjs/errors@^4.3.4", "@feathersjs/errors@^4.5.1", "@feathersjs/errors@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@feathersjs/errors/-/errors-4.5.2.tgz#b6573d8b27be7069867066157c4effbc2e78ceb5"
   integrity sha512-sfjmakwZSqbzeKxYYtuxZGTBCHANwASuqzvn6iJa83epPJFn0m2tkjpvpJujclSU6SNZoKAavG29ZKwPgxkYgA==
@@ -2032,6 +2041,16 @@ fb-watchman@^2.0.0:
   integrity sha512-DkPJKQeY6kKwmuMretBhr7G6Vodr7bFwDYTXIkfG1gjvNpaxBTQV3PbXg6bR1c1UP4jPOX0jHUbbHANL9vRjVg==
   dependencies:
     bser "2.1.1"
+
+feathers-memory@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/feathers-memory/-/feathers-memory-4.1.0.tgz#3cd70e20ebf1dfe4b996e8bf0a22b65cdb8173a3"
+  integrity sha512-tR8DFqLsSk2w7tpSdHjA5RgPHTu3X5R3L3Kob2K+E3b/Q5cDkI6AYQarDQOiwekAyqxkkp/fm7Fg0qYdu4Ua6Q==
+  dependencies:
+    "@feathersjs/adapter-commons" "^4.3.6"
+    "@feathersjs/commons" "^4.3.0"
+    "@feathersjs/errors" "^4.3.4"
+    sift "^8.5.0"
 
 feature-policy@0.3.0:
   version "0.3.0"
@@ -4530,6 +4549,11 @@ shx@^0.3.2:
     es6-object-assign "^1.0.3"
     minimist "^1.2.0"
     shelljs "^0.8.1"
+
+sift@^8.5.0:
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/sift/-/sift-8.5.1.tgz#22a29e1a3332e8f8d372dc5999f5cc3093778fe8"
+  integrity sha512-um2rEdXrc4YcRMzIliuip4i2o92mJONh5W1VD9vJlm1e0apVqMK4P2ZUijz8BIe1/oYLWmXwXaKFM+fOaO3Ysg==
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
