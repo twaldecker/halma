@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function height(length: number) {
@@ -62,49 +62,51 @@ function Triangle(
   );
 }
 
-function HoleLine(x: number, y: number, count: number, step: number) {
+function HoleLine(x: number, y: number, row: number, step: number, base: number) {
   let holesX: number[] = [];
-
-  for (let i = 0; i < count; i++)
+  let yPos = (line) => y + height(step) * line
+  for (let i = 0; i < Game[row]; i++)
     holesX.push(x+i*step)
 
-  return holesX.map(x => Hole(x, y))
+  return holesX.map(x => Hole(x+base/2-step/2*(Game[row]-1), yPos(row)))
 }
+
+const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
 function Holes(base: number, startx: number, countLines: number) {
   let smallTriangle = base / countLines;
-  let yPos = (line) => starty+height(smallTriangle)*line
   let starty = 6
   return (
     <>
-      {HoleLine(startx+base/2, yPos(0), 1, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*1, yPos(1), 2, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*2, yPos(2), 3, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*3, yPos(3), 4, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*0, yPos(4), 13, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*1, yPos(5), 12, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*2, yPos(6), 11, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*3, yPos(7), 10, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*4, yPos(8), 9, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*3, yPos(9), 10, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*2, yPos(10), 11, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*1, yPos(11), 12, smallTriangle)}
-      {HoleLine(startx+smallTriangle/2*0, yPos(12), 13, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*3, yPos(13), 4, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*2, yPos(14), 3, smallTriangle)}
-      {HoleLine(startx+base/2-smallTriangle/2*1, yPos(15), 2, smallTriangle)}
-      {HoleLine(startx+base/2, yPos(16), 1, smallTriangle)}
+      {HoleLine(startx, starty, 0, smallTriangle, base)}
+      {HoleLine(startx, starty, 1, smallTriangle, base)}
+      {HoleLine(startx, starty, 2, smallTriangle, base)}
+      {HoleLine(startx, starty, 3, smallTriangle, base)}
+      {HoleLine(startx, starty, 4, smallTriangle, base)}
+      {HoleLine(startx, starty, 5, smallTriangle, base)}
+      {HoleLine(startx, starty, 6, smallTriangle, base)}
+      {HoleLine(startx, starty, 7, smallTriangle, base)}
+      {HoleLine(startx, starty, 8, smallTriangle, base)}
+      {HoleLine(startx, starty, 9, smallTriangle, base)}
+      {HoleLine(startx, starty, 10, smallTriangle, base)}
+      {HoleLine(startx, starty, 11, smallTriangle, base)}
+      {HoleLine(startx, starty, 12, smallTriangle, base)}
+      {HoleLine(startx, starty, 13, smallTriangle, base)}
+      {HoleLine(startx, starty, 14, smallTriangle, base)}
+      {HoleLine(startx, starty, 15, smallTriangle, base)}
+      {HoleLine(startx, starty, 16, smallTriangle, base)}
     </>
   )
 }
 
 function App() {
   let base = 500;
-
   let startx = 10;
   let starty = 150;
-
   let countLines = 12;
+
+  const [game, setGame] = useState([]);
+
 
   return (
     <svg viewBox="0 0 520 600" style={{ maxHeight: "100vh", width: "100%" }}>
