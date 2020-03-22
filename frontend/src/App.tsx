@@ -240,6 +240,7 @@ function App() {
     <div className="game">
     <h1>Halma</h1>
     <div className="spielid">Spiel ID: <a href={window.location.href}>{window.location.pathname.substr(1)}</a></div>
+    <div className="share"><a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+halma.qurdo.com"} data-action="share/whatsapp/share"><img src="whatsapp.png"></img></a></div>
     <svg viewBox="0 0 540 620" style={{ maxHeight: "calc(100vh - 50px)", width: "100%" }} onClick={unselect}>
       <g>{Triangle(base, startx, starty, countLines)}</g>
       <g

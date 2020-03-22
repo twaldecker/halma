@@ -24,6 +24,23 @@ circle:hover {
   color: white;
 }
 
+.game .share {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: none;
+}
+
+.game .share img {
+  width: 40px;
+}
+
+@media (pointer:none), (pointer:coarse) {
+  .game .share {
+    display: block;
+  }
+}
+
 /* Extra Small Devices, .visible-xs-* */
 @media only screen and (max-width: 767px) and (orientation: portrait) {
   .game .spielid {
