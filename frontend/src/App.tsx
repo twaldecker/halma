@@ -210,7 +210,6 @@ function App() {
     setGame(game)
   }
 
-  //untested
   gameService.on('updated', result => {
     setGame(result.data)
   })
