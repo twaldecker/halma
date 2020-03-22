@@ -1,7 +1,12 @@
 import React from "react";
 import "./Start.css"
+import { useHistory } from "react-router-dom"
 
 function Start() {
+  const history = useHistory();
+
+  const go = () => history.push("/abc");
+
   return (
     <div className="start">
       <div className="wrapper">
@@ -28,7 +33,7 @@ function Start() {
           Bei einem neuen Spiel können Sie das Feld leer lassen. Möchten Sie
           einem Spiel beitreten, geben Sie bitte die Spiel ID an.
         </div>
-        <button className="start-button">
+        <button className="start-button" onClick={go}>
           Spiel starten oder beitreten
         </button>
       </div>
