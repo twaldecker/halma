@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import client from './feathers';
 
-const gameService = client.service('game')
-
 interface GameState {
   color: string
   row: number
   i: number
   sel: boolean
 }
+
+const gameService = client.service('game')
 
 const initialGame: GameState[] = [
   {color: '#bb86fc', row: 4, i: 12, sel: false},
@@ -61,6 +61,8 @@ const initialGame: GameState[] = [
   {color: '#b00020', row: 16, i: 0, sel: false},
 ]
 
+const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
+
 function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
@@ -73,8 +75,6 @@ function Pin(x: number, y: number, pin: GameState, pinClick) {
 
 async function getInitialGameState(setGame) {
   var game = await gameService.find()
-
-  console.log(game)
 
   if (game.data.length != 0) {
     let gameData = game.data[0].data.game
@@ -170,8 +170,6 @@ function HoleLine(x: number, y: number, row: number, step: number, base: number,
 
   return holesX.map((x, i) => Hole(x+base/2-step/2*(Game[row]-1), yPos(row), row, i, game, setGame))
 }
-
-const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
 function Holes(starty: number, base: number, startx: number, countLines: number, game, setGame) {
   let smallTriangle = base / countLines;
