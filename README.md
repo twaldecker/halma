@@ -13,3 +13,10 @@ cd backend
 yarn install
 yarn start
 ```
+
+## Docker
+
+```
+docker build -t halma .
+docker container run -p 3030:3030 halma
+```
