@@ -4,10 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Start from './Start';
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Start />
+    <Router>
+      <Switch>
+        <Route path="/:id">
+          <App />
+        </Route>
+        <Route path="/">
+          <Start />
+        </Route>
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
