@@ -228,8 +228,13 @@ function App() {
     setGame(result.data.game)
   });
 
+  const unselect = _ => {
+    let newGame = game.map(s => ({...s, sel: false}))
+    setGame(newGame)
+  }
+
   return (
-    <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }}>
+    <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }} onClick={unselect}>
       <g>{Triangle(base, startx, starty, countLines)}</g>
       <g
         transform={`rotate(180, ${startx + base / 2}, ${starty +
