@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import "./Start.css"
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
+import generate from 'project-name-generator';
 
 function Start() {
   const history = useHistory();
   const [gameId, setGameId] = useState("");
 
-  const go = () => history.push(gameId);
+  const go = () => {
+    if(!gameId) {
+      history.push(generate().dashed)
+    } else {
+      history.push(gameId);
+    }
+  }
 
   return (
     <div className="start">

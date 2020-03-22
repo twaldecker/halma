@@ -25,7 +25,4 @@ docker container run -p 3030:3030 halma
 
 # ToDo
 
-- [ ] button to finish
-- [x] load initial state
-- [x] channel support
 - [ ] choose initial state

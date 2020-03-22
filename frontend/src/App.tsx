@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import client from './feathers';
 
-const gameService = client.service('game')
-
 interface GameState {
   color: string
   row: number
   i: number
   sel: boolean
 }
+
+const gameService = client.service('game')
 
 const initialGame: GameState[] = [
   {color: '#bb86fc', row: 4, i: 12, sel: false},
@@ -61,20 +61,23 @@ const initialGame: GameState[] = [
   {color: '#b00020', row: 16, i: 0, sel: false},
 ]
 
+const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
+
 function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
 
 function Pin(x: number, y: number, pin: GameState, pinClick) {
   return (
-    <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#fff`:''} onClick={pinClick} />
+    <>
+      <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#fff`:''} />
+      <circle r="20" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={pinClick} />
+    </>
   );
 }
 
 async function getInitialGameState(setGame) {
   var game = await gameService.find()
-
-  console.log(game)
 
   if (game.data.length != 0) {
     let gameData = game.data[0].data.game
@@ -114,7 +117,7 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[], s
   return (
     <>
       <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
-      <circle r="15" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={holeClick} />
+      <circle r="20" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={holeClick} />
     </>
   )
 }
@@ -170,8 +173,6 @@ function HoleLine(x: number, y: number, row: number, step: number, base: number,
 
   return holesX.map((x, i) => Hole(x+base/2-step/2*(Game[row]-1), yPos(row), row, i, game, setGame))
 }
-
-const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
 function Holes(starty: number, base: number, startx: number, countLines: number, game, setGame) {
   let smallTriangle = base / countLines;
@@ -230,8 +231,13 @@ function App() {
     setGame(result.data.game)
   });
 
+  const unselect = _ => {
+    let newGame = game.map(s => ({...s, sel: false}))
+    setGame(newGame)
+  }
+
   return (
-    <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }}>
+    <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }} onClick={unselect}>
       <g>{Triangle(base, startx, starty, countLines)}</g>
       <g
         transform={`rotate(180, ${startx + base / 2}, ${starty +
