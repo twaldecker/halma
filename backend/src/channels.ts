@@ -10,23 +10,21 @@ export default function(app: Application) {
 
   let channelConnections: any = [];
 
-  app.on('connection', (connection: any) => {
+  app.on('connection', async (connection: any) =>  {
     let channel = new URL(connection.headers.referer).pathname
 
     if (channelConnections[channel] == undefined) {
-      channelConnections[channel] = 0;  
+      channelConnections[channel] = 0;
     }
-
     channelConnections[channel]++;
-    //console.log("Connections: " + channel + ": " + channelConnections[channel]);
+    app.service('connection').create({data: {channel, connections: channelConnections[channel]}})
     app.channel(channel).join(connection);
   });
 
   app.on('disconnect', (connection: any) => {
     let channel = new URL(connection.headers.referer).pathname
     channelConnections[channel]--;
-    //console.log("Disconnected from " + channel);
-    //console.log("Connections: " + channel + ": " + channelConnections[channel]);
+    app.service('connection').create({data: {channel, connections: channelConnections[channel]}})
   })
 
   app.publish((msg: any) => {

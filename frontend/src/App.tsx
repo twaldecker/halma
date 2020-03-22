@@ -10,6 +10,9 @@ interface GameState {
 }
 
 const gameService = client.service('game')
+const connectionService = client.service('connection')
+
+
 
 const initialGame: GameState[] = [
   {color: '#bb86fc', row: 4, i: 12, sel: false},
@@ -209,6 +212,7 @@ function App() {
   const channel = new URL(window.location.href).pathname
 
   const [game, setGame] = useState(initialGame);
+  const [connectionCount, setConnectionCount] = useState(0);
 
   const feathersSetGame = async game => {
     // Create first game
@@ -226,6 +230,10 @@ function App() {
   useEffect(() => {
     getInitialGameState(setGame)
   }, []);
+
+  connectionService.on('created', result => {
+    setConnectionCount(result.data.connections);
+  });
 
   gameService.on('updated', result => {
     setGame(result.data.game)
@@ -245,6 +253,7 @@ function App() {
     <h1>Halma</h1>
     <div className="spielid">Spiel ID: <a href={window.location.href}>{window.location.pathname.substr(1)}</a></div>
     <div className="share"><a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a></div>
+    <div className="">Connections: {connectionCount}</div>
     <svg viewBox="0 0 540 620" style={{ maxHeight: "calc(100vh - 50px)", width: "100%" }} onClick={unselect}>
       <g>{Triangle(base, startx, starty, countLines)}</g>
       <g
