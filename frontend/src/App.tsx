@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import client from './feathers';
 
-
-const gameService = client.service('game');
-
-gameService.on('created', message => console.log('Created a game', message));
+const gameService = client.service('game')
 
 interface GameState {
   color: string
@@ -20,8 +17,20 @@ function height(length: number) {
 
 function Pin(x: number, y: number, pin: GameState, pinClick) {
   return (
-    <circle r="8" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#000`:''} onClick={pinClick} />
+    <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#000`:''} onClick={pinClick} />
   );
+}
+
+async function getInitialGameState(setGame) {
+  var game = await gameService.find({
+    query: {
+    }
+  })
+
+  if (game.total > 0) {
+    let gameData = game.data
+    setGame(gameData[0].data)
+  }
 }
 
 function Hole(x: number, y: number, row: number, i: number, game: GameState[], setGame) {
@@ -53,7 +62,7 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[], s
     return Pin(x, y, pin, pinClick)
   return (
     <>
-      <circle r="3" fill="#777" cx={x} cy={y} />
+      <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
       <circle r="15" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={holeClick} />
     </>
   )
@@ -146,53 +155,53 @@ function App() {
   let countLines = 12;
 
   let initialGame: GameState[] = [
-    {color: '#00f', row: 4, i: 12, sel: false},
-    {color: '#00f', row: 4, i: 11, sel: false},
-    {color: '#00f', row: 4, i: 10, sel: false},
-    {color: '#00f', row: 4, i: 9, sel: false},
-    {color: '#00f', row: 4, i: 8, sel: false},
-    {color: '#00f', row: 5, i: 11, sel: false},
-    {color: '#00f', row: 5, i: 10, sel: false},
-    {color: '#00f', row: 5, i: 9, sel: false},
-    {color: '#00f', row: 5, i: 8, sel: false},
-    {color: '#00f', row: 6, i: 10, sel: false},
-    {color: '#00f', row: 6, i: 9, sel: false},
-    {color: '#00f', row: 6, i: 8, sel: false},
-    {color: '#00f', row: 7, i: 9, sel: false},
-    {color: '#00f', row: 7, i: 8, sel: false},
-    {color: '#00f', row: 8, i: 8, sel: false},
+    {color: '#bb86fc', row: 4, i: 12, sel: false},
+    {color: '#bb86fc', row: 4, i: 11, sel: false},
+    {color: '#bb86fc', row: 4, i: 10, sel: false},
+    {color: '#bb86fc', row: 4, i: 9, sel: false},
+    {color: '#bb86fc', row: 4, i: 8, sel: false},
+    {color: '#bb86fc', row: 5, i: 11, sel: false},
+    {color: '#bb86fc', row: 5, i: 10, sel: false},
+    {color: '#bb86fc', row: 5, i: 9, sel: false},
+    {color: '#bb86fc', row: 5, i: 8, sel: false},
+    {color: '#bb86fc', row: 6, i: 10, sel: false},
+    {color: '#bb86fc', row: 6, i: 9, sel: false},
+    {color: '#bb86fc', row: 6, i: 8, sel: false},
+    {color: '#bb86fc', row: 7, i: 9, sel: false},
+    {color: '#bb86fc', row: 7, i: 8, sel: false},
+    {color: '#bb86fc', row: 8, i: 8, sel: false},
 
-    {color: '#0f0', row: 4, i: 0, sel: false},
-    {color: '#0f0', row: 4, i: 1, sel: false},
-    {color: '#0f0', row: 4, i: 2, sel: false},
-    {color: '#0f0', row: 4, i: 3, sel: false},
-    {color: '#0f0', row: 4, i: 4, sel: false},
-    {color: '#0f0', row: 5, i: 0, sel: false},
-    {color: '#0f0', row: 5, i: 1, sel: false},
-    {color: '#0f0', row: 5, i: 2, sel: false},
-    {color: '#0f0', row: 5, i: 3, sel: false},
-    {color: '#0f0', row: 6, i: 0, sel: false},
-    {color: '#0f0', row: 6, i: 1, sel: false},
-    {color: '#0f0', row: 6, i: 2, sel: false},
-    {color: '#0f0', row: 7, i: 0, sel: false},
-    {color: '#0f0', row: 7, i: 1, sel: false},
-    {color: '#0f0', row: 8, i: 0, sel: false},
+    {color: '#03dac6', row: 4, i: 0, sel: false},
+    {color: '#03dac6', row: 4, i: 1, sel: false},
+    {color: '#03dac6', row: 4, i: 2, sel: false},
+    {color: '#03dac6', row: 4, i: 3, sel: false},
+    {color: '#03dac6', row: 4, i: 4, sel: false},
+    {color: '#03dac6', row: 5, i: 0, sel: false},
+    {color: '#03dac6', row: 5, i: 1, sel: false},
+    {color: '#03dac6', row: 5, i: 2, sel: false},
+    {color: '#03dac6', row: 5, i: 3, sel: false},
+    {color: '#03dac6', row: 6, i: 0, sel: false},
+    {color: '#03dac6', row: 6, i: 1, sel: false},
+    {color: '#03dac6', row: 6, i: 2, sel: false},
+    {color: '#03dac6', row: 7, i: 0, sel: false},
+    {color: '#03dac6', row: 7, i: 1, sel: false},
+    {color: '#03dac6', row: 8, i: 0, sel: false},
 
-    {color: '#f00', row: 12, i: 4, sel: false},
-    {color: '#f00', row: 12, i: 5, sel: false},
-    {color: '#f00', row: 12, i: 6, sel: false},
-    {color: '#f00', row: 12, i: 7, sel: false},
-    {color: '#f00', row: 12, i: 8, sel: false},
-    {color: '#f00', row: 13, i: 0, sel: false},
-    {color: '#f00', row: 13, i: 1, sel: false},
-    {color: '#f00', row: 13, i: 2, sel: false},
-    {color: '#f00', row: 13, i: 3, sel: false},
-    {color: '#f00', row: 14, i: 0, sel: false},
-    {color: '#f00', row: 14, i: 1, sel: false},
-    {color: '#f00', row: 14, i: 2, sel: false},
-    {color: '#f00', row: 15, i: 0, sel: false},
-    {color: '#f00', row: 15, i: 1, sel: false},
-    {color: '#f00', row: 16, i: 0, sel: false},
+    {color: '#b00020', row: 12, i: 4, sel: false},
+    {color: '#b00020', row: 12, i: 5, sel: false},
+    {color: '#b00020', row: 12, i: 6, sel: false},
+    {color: '#b00020', row: 12, i: 7, sel: false},
+    {color: '#b00020', row: 12, i: 8, sel: false},
+    {color: '#b00020', row: 13, i: 0, sel: false},
+    {color: '#b00020', row: 13, i: 1, sel: false},
+    {color: '#b00020', row: 13, i: 2, sel: false},
+    {color: '#b00020', row: 13, i: 3, sel: false},
+    {color: '#b00020', row: 14, i: 0, sel: false},
+    {color: '#b00020', row: 14, i: 1, sel: false},
+    {color: '#b00020', row: 14, i: 2, sel: false},
+    {color: '#b00020', row: 15, i: 0, sel: false},
+    {color: '#b00020', row: 15, i: 1, sel: false},
+    {color: '#b00020', row: 16, i: 0, sel: false},
   ]
 
   const [game, setGame] = useState(initialGame);
@@ -202,13 +211,15 @@ function App() {
     let findResult = await gameService.find();
 
     if (findResult.total == 0) {
-      await gameService.create({data: game});
+      await gameService.create({data: game})
     } else {
-      await gameService.update(0, {data: game});
+      await gameService.update(0, {data: game})
     }
 
     setGame(game)
   }
+
+  //getInitialGameState(setGame)
 
   //untested
   gameService.on('updated', result => {
