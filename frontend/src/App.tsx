@@ -449,7 +449,7 @@ function App() {
   }
 
   const resetGame = _ => {
-    setGame(initialGame)
+    feathersSetGame(initialGame2p)
   }
 
   return (
