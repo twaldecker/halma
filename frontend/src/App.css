@@ -35,6 +35,17 @@ circle:hover {
   width: 40px;
 }
 
+.reset-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  border: 0;
+  background: #666666;
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 @media (pointer:none), (pointer:coarse) {
   .game .share {
     display: block;
