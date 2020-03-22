@@ -171,9 +171,8 @@ function HoleLine(x: number, y: number, row: number, step: number, base: number,
 
 const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
-function Holes(base: number, startx: number, countLines: number, game, setGame) {
+function Holes(starty: number, base: number, startx: number, countLines: number, game, setGame) {
   let smallTriangle = base / countLines;
-  let starty = 16
   return (
     <>
       {HoleLine(startx, starty, 0, smallTriangle, base, game, setGame)}
@@ -201,6 +200,7 @@ function App() {
   let base = 500;
   let startx = 20;
   let starty = 160;
+  let holesStarty = 16;
   let countLines = 12;
 
   const channel = new URL(window.location.href).pathname
@@ -238,7 +238,7 @@ function App() {
         {Triangle(base, startx, starty, countLines)}
       </g>
 
-      {Holes(base, startx, countLines, game, feathersSetGame)}
+      {Holes(holesStarty, base, startx, countLines, game, feathersSetGame)}
     </svg>
   );
 }
