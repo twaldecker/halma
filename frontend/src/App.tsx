@@ -72,14 +72,11 @@ function Pin(x: number, y: number, pin: GameState, pinClick) {
 }
 
 async function getInitialGameState(setGame) {
-  var game = await gameService.find({
-    query: {
-    }
-  })
+  var game = await gameService.get(0)
 
-  if (game.total > 0) {
-    let gameData = game.data
-    setGame(gameData[0].data)
+  if (game) {
+    let gameData = game.data.game
+    setGame(gameData)
   }
 }
 
@@ -209,9 +206,9 @@ function App() {
 
   const feathersSetGame = async game => {
     // Create first game
-    let findResult = await gameService.find();
+    let result = await gameService.get(0);
 
-    if (findResult.total == 0) {
+    if (!result) {
       await gameService.create({
         data: { channel, game }})
     } else {
@@ -221,7 +218,7 @@ function App() {
     setGame(game)
   }
 
- //getInitialGameState(setGame)
+  getInitialGameState(setGame)
   gameService.on('updated', result => {
     setGame(result.data.game)
   })
