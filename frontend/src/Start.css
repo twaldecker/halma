@@ -49,3 +49,7 @@
   font-size: 1.5em;
   text-transform: uppercase;
 }
+
+.start-button {
+  cursor: pointer;
+}
