@@ -11,6 +11,56 @@ interface GameState {
   sel: boolean
 }
 
+const initialGame: GameState[] = [
+  {color: '#bb86fc', row: 4, i: 12, sel: false},
+  {color: '#bb86fc', row: 4, i: 11, sel: false},
+  {color: '#bb86fc', row: 4, i: 10, sel: false},
+  {color: '#bb86fc', row: 4, i: 9, sel: false},
+  {color: '#bb86fc', row: 4, i: 8, sel: false},
+  {color: '#bb86fc', row: 5, i: 11, sel: false},
+  {color: '#bb86fc', row: 5, i: 10, sel: false},
+  {color: '#bb86fc', row: 5, i: 9, sel: false},
+  {color: '#bb86fc', row: 5, i: 8, sel: false},
+  {color: '#bb86fc', row: 6, i: 10, sel: false},
+  {color: '#bb86fc', row: 6, i: 9, sel: false},
+  {color: '#bb86fc', row: 6, i: 8, sel: false},
+  {color: '#bb86fc', row: 7, i: 9, sel: false},
+  {color: '#bb86fc', row: 7, i: 8, sel: false},
+  {color: '#bb86fc', row: 8, i: 8, sel: false},
+
+  {color: '#03dac6', row: 4, i: 0, sel: false},
+  {color: '#03dac6', row: 4, i: 1, sel: false},
+  {color: '#03dac6', row: 4, i: 2, sel: false},
+  {color: '#03dac6', row: 4, i: 3, sel: false},
+  {color: '#03dac6', row: 4, i: 4, sel: false},
+  {color: '#03dac6', row: 5, i: 0, sel: false},
+  {color: '#03dac6', row: 5, i: 1, sel: false},
+  {color: '#03dac6', row: 5, i: 2, sel: false},
+  {color: '#03dac6', row: 5, i: 3, sel: false},
+  {color: '#03dac6', row: 6, i: 0, sel: false},
+  {color: '#03dac6', row: 6, i: 1, sel: false},
+  {color: '#03dac6', row: 6, i: 2, sel: false},
+  {color: '#03dac6', row: 7, i: 0, sel: false},
+  {color: '#03dac6', row: 7, i: 1, sel: false},
+  {color: '#03dac6', row: 8, i: 0, sel: false},
+
+  {color: '#b00020', row: 12, i: 4, sel: false},
+  {color: '#b00020', row: 12, i: 5, sel: false},
+  {color: '#b00020', row: 12, i: 6, sel: false},
+  {color: '#b00020', row: 12, i: 7, sel: false},
+  {color: '#b00020', row: 12, i: 8, sel: false},
+  {color: '#b00020', row: 13, i: 0, sel: false},
+  {color: '#b00020', row: 13, i: 1, sel: false},
+  {color: '#b00020', row: 13, i: 2, sel: false},
+  {color: '#b00020', row: 13, i: 3, sel: false},
+  {color: '#b00020', row: 14, i: 0, sel: false},
+  {color: '#b00020', row: 14, i: 1, sel: false},
+  {color: '#b00020', row: 14, i: 2, sel: false},
+  {color: '#b00020', row: 15, i: 0, sel: false},
+  {color: '#b00020', row: 15, i: 1, sel: false},
+  {color: '#b00020', row: 16, i: 0, sel: false},
+]
+
 function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
@@ -55,7 +105,6 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[], s
     else {
       console.log("no pin selected!")
     }
-
   }
 
   if(pin)
@@ -124,7 +173,7 @@ const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
 function Holes(base: number, startx: number, countLines: number, game, setGame) {
   let smallTriangle = base / countLines;
-  let starty = 6
+  let starty = 16
   return (
     <>
       {HoleLine(startx, starty, 0, smallTriangle, base, game, setGame)}
@@ -150,59 +199,9 @@ function Holes(base: number, startx: number, countLines: number, game, setGame) 
 
 function App() {
   let base = 500;
-  let startx = 10;
-  let starty = 150;
+  let startx = 20;
+  let starty = 160;
   let countLines = 12;
-
-  let initialGame: GameState[] = [
-    {color: '#bb86fc', row: 4, i: 12, sel: false},
-    {color: '#bb86fc', row: 4, i: 11, sel: false},
-    {color: '#bb86fc', row: 4, i: 10, sel: false},
-    {color: '#bb86fc', row: 4, i: 9, sel: false},
-    {color: '#bb86fc', row: 4, i: 8, sel: false},
-    {color: '#bb86fc', row: 5, i: 11, sel: false},
-    {color: '#bb86fc', row: 5, i: 10, sel: false},
-    {color: '#bb86fc', row: 5, i: 9, sel: false},
-    {color: '#bb86fc', row: 5, i: 8, sel: false},
-    {color: '#bb86fc', row: 6, i: 10, sel: false},
-    {color: '#bb86fc', row: 6, i: 9, sel: false},
-    {color: '#bb86fc', row: 6, i: 8, sel: false},
-    {color: '#bb86fc', row: 7, i: 9, sel: false},
-    {color: '#bb86fc', row: 7, i: 8, sel: false},
-    {color: '#bb86fc', row: 8, i: 8, sel: false},
-
-    {color: '#03dac6', row: 4, i: 0, sel: false},
-    {color: '#03dac6', row: 4, i: 1, sel: false},
-    {color: '#03dac6', row: 4, i: 2, sel: false},
-    {color: '#03dac6', row: 4, i: 3, sel: false},
-    {color: '#03dac6', row: 4, i: 4, sel: false},
-    {color: '#03dac6', row: 5, i: 0, sel: false},
-    {color: '#03dac6', row: 5, i: 1, sel: false},
-    {color: '#03dac6', row: 5, i: 2, sel: false},
-    {color: '#03dac6', row: 5, i: 3, sel: false},
-    {color: '#03dac6', row: 6, i: 0, sel: false},
-    {color: '#03dac6', row: 6, i: 1, sel: false},
-    {color: '#03dac6', row: 6, i: 2, sel: false},
-    {color: '#03dac6', row: 7, i: 0, sel: false},
-    {color: '#03dac6', row: 7, i: 1, sel: false},
-    {color: '#03dac6', row: 8, i: 0, sel: false},
-
-    {color: '#b00020', row: 12, i: 4, sel: false},
-    {color: '#b00020', row: 12, i: 5, sel: false},
-    {color: '#b00020', row: 12, i: 6, sel: false},
-    {color: '#b00020', row: 12, i: 7, sel: false},
-    {color: '#b00020', row: 12, i: 8, sel: false},
-    {color: '#b00020', row: 13, i: 0, sel: false},
-    {color: '#b00020', row: 13, i: 1, sel: false},
-    {color: '#b00020', row: 13, i: 2, sel: false},
-    {color: '#b00020', row: 13, i: 3, sel: false},
-    {color: '#b00020', row: 14, i: 0, sel: false},
-    {color: '#b00020', row: 14, i: 1, sel: false},
-    {color: '#b00020', row: 14, i: 2, sel: false},
-    {color: '#b00020', row: 15, i: 0, sel: false},
-    {color: '#b00020', row: 15, i: 1, sel: false},
-    {color: '#b00020', row: 16, i: 0, sel: false},
-  ]
 
   const [game, setGame] = useState(initialGame);
 
@@ -225,7 +224,7 @@ function App() {
   })
 
   return (
-    <svg viewBox="0 0 520 600" style={{ maxHeight: "100vh", width: "100%" }}>
+    <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }}>
       <g>{Triangle(base, startx, starty, countLines)}</g>
       <g
         transform={`rotate(180, ${startx + base / 2}, ${starty +
