@@ -219,9 +219,7 @@ function App() {
     setGame(game)
   }
 
-  //getInitialGameState(setGame)
-
-  //untested
+ //getInitialGameState(setGame)
   gameService.on('updated', result => {
     setGame(result.data)
   })
