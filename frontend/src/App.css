@@ -6,7 +6,47 @@ circle:hover {
 .game h1 {
   position: absolute;
   top: 0;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
   text-transform: uppercase;
   color: #fff;
+}
+
+.game .spielid {
+  color: white;
+  position: absolute;
+  left: 10px;
+  top: 50px;
+  font-size: 12px;
+}
+
+.game .spielid a {
+  color: white;
+}
+
+/* Extra Small Devices, .visible-xs-* */
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  .game .spielid {
+    left: 20px;
+    top: 50px;
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+
+}
+
+/* Small Devices, .visible-sm-* */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Medium Devices, .visible-md-* */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Large Devices, .visible-lg-* */
+@media only screen and (min-width: 1200px) {
+
 }
