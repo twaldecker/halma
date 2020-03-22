@@ -203,6 +203,8 @@ function App() {
   let starty = 160;
   let countLines = 12;
 
+  const channel = new URL(window.location.href).pathname
+
   const [game, setGame] = useState(initialGame);
 
   const feathersSetGame = async game => {
@@ -210,9 +212,10 @@ function App() {
     let findResult = await gameService.find();
 
     if (findResult.total == 0) {
-      await gameService.create({data: game})
+      await gameService.create({
+        data: { channel, game }})
     } else {
-      await gameService.update(0, {data: game})
+      await gameService.update(0, {data: {channel, game}})
     }
 
     setGame(game)
@@ -220,7 +223,7 @@ function App() {
 
  //getInitialGameState(setGame)
   gameService.on('updated', result => {
-    setGame(result.data)
+    setGame(result.data.game)
   })
 
   return (

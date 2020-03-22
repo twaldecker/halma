@@ -22,3 +22,9 @@ yarn dev
 docker build -t halma .
 docker container run -p 3030:3030 halma
 ```
+
+# ToDo
+
+- [ ] button to finish
+- [ ] channel support
+- [ ] choose initial state
