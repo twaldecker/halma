@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Start.css"
 import { useHistory } from "react-router-dom"
 
 function Start() {
   const history = useHistory();
+  const [gameId, setGameId] = useState("");
 
-  const go = () => history.push("/abc");
+  const go = () => history.push(gameId);
 
   return (
     <div className="start">
@@ -25,7 +26,9 @@ function Start() {
         <input
           type="text"
           name="room"
+          value={gameId}
           placeholder="Spiel ID"
+          onChange={(x) => setGameId(x.target.value)}
         />
         <div
           className="description"
