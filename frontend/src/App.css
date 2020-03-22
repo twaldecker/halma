@@ -2,3 +2,11 @@ circle:hover {
   opacity: 0.9;
   cursor: pointer;
 }
+
+.game h1 {
+  position: absolute;
+  top: 0;
+  margin-left: 20px;
+  text-transform: uppercase;
+  color: #fff;
+}

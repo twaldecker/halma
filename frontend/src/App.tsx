@@ -237,7 +237,9 @@ function App() {
   }
 
   return (
-    <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }} onClick={unselect}>
+    <div className="game">
+    <h1>Halma</h1>
+    <svg viewBox="0 0 540 620" style={{ maxHeight: "calc(100vh - 50px)", width: "100%" }} onClick={unselect}>
       <g>{Triangle(base, startx, starty, countLines)}</g>
       <g
         transform={`rotate(180, ${startx + base / 2}, ${starty +
@@ -250,6 +252,7 @@ function App() {
 
       {Holes(holesStarty, base, startx, countLines, game, feathersSetGame)}
     </svg>
+    </div>
   );
 }
 
