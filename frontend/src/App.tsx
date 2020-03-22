@@ -67,7 +67,7 @@ function height(length: number) {
 
 function Pin(x: number, y: number, pin: GameState, pinClick) {
   return (
-    <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#000`:''} onClick={pinClick} />
+    <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#fff`:''} onClick={pinClick} />
   );
 }
 
