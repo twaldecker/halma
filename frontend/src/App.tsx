@@ -69,7 +69,10 @@ function height(length: number) {
 
 function Pin(x: number, y: number, pin: GameState, pinClick) {
   return (
-    <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#fff`:''} onClick={pinClick} />
+    <>
+      <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#fff`:''} />
+      <circle r="20" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={pinClick} />
+    </>
   );
 }
 
@@ -114,7 +117,7 @@ function Hole(x: number, y: number, row: number, i: number, game: GameState[], s
   return (
     <>
       <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
-      <circle r="15" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={holeClick} />
+      <circle r="20" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={holeClick} />
     </>
   )
 }
