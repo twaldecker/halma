@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import client from './feathers';
 
@@ -217,11 +217,13 @@ function App() {
 
     setGame(game)
   }
+  useEffect(() => {
+    getInitialGameState(setGame)
+  });
 
-  getInitialGameState(setGame)
   gameService.on('updated', result => {
     setGame(result.data.game)
-  })
+  });
 
   return (
     <svg viewBox="0 0 540 620" style={{ maxHeight: "100vh", width: "100%" }}>
