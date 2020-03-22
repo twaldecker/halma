@@ -219,7 +219,7 @@ function App() {
   }
   useEffect(() => {
     getInitialGameState(setGame)
-  });
+  }, []);
 
   gameService.on('updated', result => {
     setGame(result.data.game)
