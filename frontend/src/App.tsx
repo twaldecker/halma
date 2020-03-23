@@ -12,9 +12,41 @@ interface GameState {
 const gameService = client.service('game')
 const connectionService = client.service('connection')
 
+const initialGame2p: GameState[] = [
+  {color: '#b00020', row: 12, i: 4, sel: false},
+  {color: '#b00020', row: 12, i: 5, sel: false},
+  {color: '#b00020', row: 12, i: 6, sel: false},
+  {color: '#b00020', row: 12, i: 7, sel: false},
+  {color: '#b00020', row: 12, i: 8, sel: false},
+  {color: '#b00020', row: 13, i: 0, sel: false},
+  {color: '#b00020', row: 13, i: 1, sel: false},
+  {color: '#b00020', row: 13, i: 2, sel: false},
+  {color: '#b00020', row: 13, i: 3, sel: false},
+  {color: '#b00020', row: 14, i: 0, sel: false},
+  {color: '#b00020', row: 14, i: 1, sel: false},
+  {color: '#b00020', row: 14, i: 2, sel: false},
+  {color: '#b00020', row: 15, i: 0, sel: false},
+  {color: '#b00020', row: 15, i: 1, sel: false},
+  {color: '#b00020', row: 16, i: 0, sel: false},
 
+  {color: '#bb86fc', row: 0, i: 0, sel: false},
+  {color: '#bb86fc', row: 1, i: 0, sel: false},
+  {color: '#bb86fc', row: 1, i: 1, sel: false},
+  {color: '#bb86fc', row: 2, i: 0, sel: false},
+  {color: '#bb86fc', row: 2, i: 1, sel: false},
+  {color: '#bb86fc', row: 2, i: 2, sel: false},
+  {color: '#bb86fc', row: 3, i: 0, sel: false},
+  {color: '#bb86fc', row: 3, i: 1, sel: false},
+  {color: '#bb86fc', row: 3, i: 2, sel: false},
+  {color: '#bb86fc', row: 3, i: 3, sel: false},
+  {color: '#bb86fc', row: 4, i: 4, sel: false},
+  {color: '#bb86fc', row: 4, i: 5, sel: false},
+  {color: '#bb86fc', row: 4, i: 6, sel: false},
+  {color: '#bb86fc', row: 4, i: 7, sel: false},
+  {color: '#bb86fc', row: 4, i: 8, sel: false},
+]
 
-const initialGame: GameState[] = [
+const initialGame3p: GameState[] = [
   {color: '#bb86fc', row: 4, i: 12, sel: false},
   {color: '#bb86fc', row: 4, i: 11, sel: false},
   {color: '#bb86fc', row: 4, i: 10, sel: false},
@@ -64,6 +96,178 @@ const initialGame: GameState[] = [
   {color: '#b00020', row: 16, i: 0, sel: false},
 ]
 
+const initialGame4p: GameState[] = [
+  {color: '#bb86fc', row: 4, i: 12, sel: false},
+  {color: '#bb86fc', row: 4, i: 11, sel: false},
+  {color: '#bb86fc', row: 4, i: 10, sel: false},
+  {color: '#bb86fc', row: 4, i: 9, sel: false},
+  {color: '#bb86fc', row: 5, i: 11, sel: false},
+  {color: '#bb86fc', row: 5, i: 10, sel: false},
+  {color: '#bb86fc', row: 5, i: 9, sel: false},
+  {color: '#bb86fc', row: 6, i: 10, sel: false},
+  {color: '#bb86fc', row: 6, i: 9, sel: false},
+  {color: '#bb86fc', row: 7, i: 9, sel: false},
+
+  {color: '#03dac6', row: 4, i: 0, sel: false},
+  {color: '#03dac6', row: 4, i: 1, sel: false},
+  {color: '#03dac6', row: 4, i: 2, sel: false},
+  {color: '#03dac6', row: 4, i: 3, sel: false},
+  {color: '#03dac6', row: 5, i: 0, sel: false},
+  {color: '#03dac6', row: 5, i: 1, sel: false},
+  {color: '#03dac6', row: 5, i: 2, sel: false},
+  {color: '#03dac6', row: 6, i: 0, sel: false},
+  {color: '#03dac6', row: 6, i: 1, sel: false},
+  {color: '#03dac6', row: 7, i: 0, sel: false},
+
+  {color: '#f3dac6', row: 12, i: 0, sel: false},
+  {color: '#f3dac6', row: 12, i: 1, sel: false},
+  {color: '#f3dac6', row: 12, i: 2, sel: false},
+  {color: '#f3dac6', row: 12, i: 3, sel: false},
+  {color: '#f3dac6', row: 11, i: 0, sel: false},
+  {color: '#f3dac6', row: 11, i: 1, sel: false},
+  {color: '#f3dac6', row: 11, i: 2, sel: false},
+  {color: '#f3dac6', row: 10, i: 0, sel: false},
+  {color: '#f3dac6', row: 10, i: 1, sel: false},
+  {color: '#f3dac6', row: 9, i: 0, sel: false},
+
+  {color: '#f35ac3', row: 12, i: 9, sel: false},
+  {color: '#f35ac3', row: 12, i: 10, sel: false},
+  {color: '#f35ac3', row: 12, i: 11, sel: false},
+  {color: '#f35ac3', row: 12, i: 12, sel: false},
+  {color: '#f35ac3', row: 11, i: 9, sel: false},
+  {color: '#f35ac3', row: 11, i: 10, sel: false},
+  {color: '#f35ac3', row: 11, i: 11, sel: false},
+  {color: '#f35ac3', row: 10, i: 9, sel: false},
+  {color: '#f35ac3', row: 10, i: 10, sel: false},
+  {color: '#f35ac3', row: 9, i: 9, sel: false},
+]
+
+const initialGame5p: GameState[] = [
+  {color: '#bb86fc', row: 4, i: 12, sel: false},
+  {color: '#bb86fc', row: 4, i: 11, sel: false},
+  {color: '#bb86fc', row: 4, i: 10, sel: false},
+  {color: '#bb86fc', row: 4, i: 9, sel: false},
+  {color: '#bb86fc', row: 5, i: 11, sel: false},
+  {color: '#bb86fc', row: 5, i: 10, sel: false},
+  {color: '#bb86fc', row: 5, i: 9, sel: false},
+  {color: '#bb86fc', row: 6, i: 10, sel: false},
+  {color: '#bb86fc', row: 6, i: 9, sel: false},
+  {color: '#bb86fc', row: 7, i: 9, sel: false},
+
+  {color: '#03dac6', row: 4, i: 0, sel: false},
+  {color: '#03dac6', row: 4, i: 1, sel: false},
+  {color: '#03dac6', row: 4, i: 2, sel: false},
+  {color: '#03dac6', row: 4, i: 3, sel: false},
+  {color: '#03dac6', row: 5, i: 0, sel: false},
+  {color: '#03dac6', row: 5, i: 1, sel: false},
+  {color: '#03dac6', row: 5, i: 2, sel: false},
+  {color: '#03dac6', row: 6, i: 0, sel: false},
+  {color: '#03dac6', row: 6, i: 1, sel: false},
+  {color: '#03dac6', row: 7, i: 0, sel: false},
+
+  {color: '#f3dac6', row: 12, i: 0, sel: false},
+  {color: '#f3dac6', row: 12, i: 1, sel: false},
+  {color: '#f3dac6', row: 12, i: 2, sel: false},
+  {color: '#f3dac6', row: 12, i: 3, sel: false},
+  {color: '#f3dac6', row: 11, i: 0, sel: false},
+  {color: '#f3dac6', row: 11, i: 1, sel: false},
+  {color: '#f3dac6', row: 11, i: 2, sel: false},
+  {color: '#f3dac6', row: 10, i: 0, sel: false},
+  {color: '#f3dac6', row: 10, i: 1, sel: false},
+  {color: '#f3dac6', row: 9, i: 0, sel: false},
+
+  {color: '#f35ac3', row: 12, i: 9, sel: false},
+  {color: '#f35ac3', row: 12, i: 10, sel: false},
+  {color: '#f35ac3', row: 12, i: 11, sel: false},
+  {color: '#f35ac3', row: 12, i: 12, sel: false},
+  {color: '#f35ac3', row: 11, i: 9, sel: false},
+  {color: '#f35ac3', row: 11, i: 10, sel: false},
+  {color: '#f35ac3', row: 11, i: 11, sel: false},
+  {color: '#f35ac3', row: 10, i: 9, sel: false},
+  {color: '#f35ac3', row: 10, i: 10, sel: false},
+  {color: '#f35ac3', row: 9, i: 9, sel: false},
+
+  {color: '#b00020', row: 13, i: 0, sel: false},
+  {color: '#b00020', row: 13, i: 1, sel: false},
+  {color: '#b00020', row: 13, i: 2, sel: false},
+  {color: '#b00020', row: 13, i: 3, sel: false},
+  {color: '#b00020', row: 14, i: 0, sel: false},
+  {color: '#b00020', row: 14, i: 1, sel: false},
+  {color: '#b00020', row: 14, i: 2, sel: false},
+  {color: '#b00020', row: 15, i: 0, sel: false},
+  {color: '#b00020', row: 15, i: 1, sel: false},
+  {color: '#b00020', row: 16, i: 0, sel: false},
+]
+
+const initialGame6p: GameState[] = [
+  {color: '#bb86fc', row: 4, i: 12, sel: false},
+  {color: '#bb86fc', row: 4, i: 11, sel: false},
+  {color: '#bb86fc', row: 4, i: 10, sel: false},
+  {color: '#bb86fc', row: 4, i: 9, sel: false},
+  {color: '#bb86fc', row: 5, i: 11, sel: false},
+  {color: '#bb86fc', row: 5, i: 10, sel: false},
+  {color: '#bb86fc', row: 5, i: 9, sel: false},
+  {color: '#bb86fc', row: 6, i: 10, sel: false},
+  {color: '#bb86fc', row: 6, i: 9, sel: false},
+  {color: '#bb86fc', row: 7, i: 9, sel: false},
+
+  {color: '#03dac6', row: 4, i: 0, sel: false},
+  {color: '#03dac6', row: 4, i: 1, sel: false},
+  {color: '#03dac6', row: 4, i: 2, sel: false},
+  {color: '#03dac6', row: 4, i: 3, sel: false},
+  {color: '#03dac6', row: 5, i: 0, sel: false},
+  {color: '#03dac6', row: 5, i: 1, sel: false},
+  {color: '#03dac6', row: 5, i: 2, sel: false},
+  {color: '#03dac6', row: 6, i: 0, sel: false},
+  {color: '#03dac6', row: 6, i: 1, sel: false},
+  {color: '#03dac6', row: 7, i: 0, sel: false},
+
+  {color: '#f3dac6', row: 12, i: 0, sel: false},
+  {color: '#f3dac6', row: 12, i: 1, sel: false},
+  {color: '#f3dac6', row: 12, i: 2, sel: false},
+  {color: '#f3dac6', row: 12, i: 3, sel: false},
+  {color: '#f3dac6', row: 11, i: 0, sel: false},
+  {color: '#f3dac6', row: 11, i: 1, sel: false},
+  {color: '#f3dac6', row: 11, i: 2, sel: false},
+  {color: '#f3dac6', row: 10, i: 0, sel: false},
+  {color: '#f3dac6', row: 10, i: 1, sel: false},
+  {color: '#f3dac6', row: 9, i: 0, sel: false},
+
+  {color: '#f35ac3', row: 12, i: 9, sel: false},
+  {color: '#f35ac3', row: 12, i: 10, sel: false},
+  {color: '#f35ac3', row: 12, i: 11, sel: false},
+  {color: '#f35ac3', row: 12, i: 12, sel: false},
+  {color: '#f35ac3', row: 11, i: 9, sel: false},
+  {color: '#f35ac3', row: 11, i: 10, sel: false},
+  {color: '#f35ac3', row: 11, i: 11, sel: false},
+  {color: '#f35ac3', row: 10, i: 9, sel: false},
+  {color: '#f35ac3', row: 10, i: 10, sel: false},
+  {color: '#f35ac3', row: 9, i: 9, sel: false},
+
+  {color: '#b00020', row: 13, i: 0, sel: false},
+  {color: '#b00020', row: 13, i: 1, sel: false},
+  {color: '#b00020', row: 13, i: 2, sel: false},
+  {color: '#b00020', row: 13, i: 3, sel: false},
+  {color: '#b00020', row: 14, i: 0, sel: false},
+  {color: '#b00020', row: 14, i: 1, sel: false},
+  {color: '#b00020', row: 14, i: 2, sel: false},
+  {color: '#b00020', row: 15, i: 0, sel: false},
+  {color: '#b00020', row: 15, i: 1, sel: false},
+  {color: '#b00020', row: 16, i: 0, sel: false},
+
+  {color: '#7b753f', row: 0, i: 0, sel: false},
+  {color: '#7b753f', row: 1, i: 0, sel: false},
+  {color: '#7b753f', row: 1, i: 1, sel: false},
+  {color: '#7b753f', row: 2, i: 0, sel: false},
+  {color: '#7b753f', row: 2, i: 1, sel: false},
+  {color: '#7b753f', row: 2, i: 2, sel: false},
+  {color: '#7b753f', row: 3, i: 0, sel: false},
+  {color: '#7b753f', row: 3, i: 1, sel: false},
+  {color: '#7b753f', row: 3, i: 2, sel: false},
+  {color: '#7b753f', row: 3, i: 3, sel: false},
+
+]
+
 const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
 function height(length: number) {
@@ -87,7 +291,7 @@ async function getInitialGameState(setGame) {
     setGame(gameData)
   }
   else {
-    setGame(initialGame);
+    setGame(initialGame2p);
   }
 }
 
@@ -211,7 +415,7 @@ function App() {
 
   const channel = new URL(window.location.href).pathname
 
-  const [game, setGame] = useState(initialGame);
+  const [game, setGame] = useState(initialGame6p);
   const [connectionCount, setConnectionCount] = useState(0);
 
   const feathersSetGame = async game => {
@@ -245,7 +449,7 @@ function App() {
   }
 
   const resetGame = _ => {
-    setGame(initialGame)
+    feathersSetGame(initialGame2p)
   }
 
   return (
