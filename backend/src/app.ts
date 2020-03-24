@@ -3,6 +3,7 @@ import favicon from 'serve-favicon';
 import compress from 'compression';
 import helmet from 'helmet';
 import cors from 'cors';
+import history from 'connect-history-api-fallback';
 
 import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
@@ -29,6 +30,7 @@ app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
+app.use(history())
 // Host the public folder
 app.use('/', express.static('../frontend/build'));
 
