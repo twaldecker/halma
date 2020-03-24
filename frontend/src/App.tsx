@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
 import connection from './feathers';
 
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+
 interface GameState {
   color: string
   row: number
@@ -415,9 +418,10 @@ function App() {
 
   const channel = new URL(window.location.href).pathname
 
-  const [game, setGame] = useState(initialGame2p);
-  const [connectionCount, setConnectionCount] = useState(0);
+  const [game, setGame] = useState(initialGame2p)
+  const [connectionCount, setConnectionCount] = useState(0)
   const [client, setClient] = useState<any>()
+  const [anchorEl, setAnchorEl] = useState<any>(null)
 
   useEffect(() => {
     let {client, socket} = connection()
@@ -459,8 +463,9 @@ function App() {
     setFeatherGame(newGame)
   }
 
-  const resetGame = _ => {
-    setFeatherGame(initialGame2p)
+  const newGame = state => {
+    setFeatherGame(state)
+    setAnchorEl(null)
   }
 
   return (
@@ -473,24 +478,31 @@ function App() {
             <span>Teilnehmer: {connectionCount}</span>
           </div>
         </div>
-      <div className="share">
-        <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a>
-      </div>
+        <div className="share">
+          <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a>
+        </div>
 
-      <svg viewBox="0 0 540 620" style={{ maxHeight: "calc(100vh - 50px)", width: "100%" }} onClick={unselect}>
-        <g><Triangle base={base} startx={startx} starty={starty} countLines={countLines} /></g>
-        <g
-          transform={`rotate(180, ${startx + base / 2}, ${starty +
-            height(base) / 2}) translate(0, ${height(
-              (4 * base) / countLines
-              )})`}
-              >
-          <Triangle base={base} startx={startx} starty={starty} countLines={countLines} />
-        </g>
+        <svg viewBox="0 0 540 620" style={{ maxHeight: "calc(100vh - 50px)", width: "100%" }} onClick={unselect}>
+          <g><Triangle base={base} startx={startx} starty={starty} countLines={countLines} /></g>
+          <g
+            transform={`rotate(180, ${startx + base / 2}, ${starty +
+              height(base) / 2}) translate(0, ${height(
+                (4 * base) / countLines
+                )})`}
+                >
+            <Triangle base={base} startx={startx} starty={starty} countLines={countLines} />
+          </g>
 
-        <Holes starty={holesStarty} base={base} startx={startx} countLines={countLines} />
-      </svg>
-      <button className="reset-button" onClick={resetGame}>Neues Spiel</button>
+          <Holes starty={holesStarty} base={base} startx={startx} countLines={countLines} />
+        </svg>
+        <button className="reset-button" onClick={e => setAnchorEl(e.currentTarget)}>Neues Spiel</button>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)}>
+          <MenuItem onClick={_ => newGame(initialGame2p)}>2 Spieler</MenuItem>
+          <MenuItem onClick={_ => newGame(initialGame3p)}>3 Spieler</MenuItem>
+          <MenuItem onClick={_ => newGame(initialGame4p)}>4 Spieler</MenuItem>
+          <MenuItem onClick={_ => newGame(initialGame5p)}>5 Spieler</MenuItem>
+          <MenuItem onClick={_ => newGame(initialGame6p)}>6 Spieler</MenuItem>
+        </Menu>
       </div>
     </GameContext.Provider>
   );
