@@ -466,11 +466,13 @@ function App() {
   return (
     <GameContext.Provider value={{game, setGame: setFeatherGame}}>
       <div className="game">
-      <h1>Halma</h1>
-      <div className="spielid">
-        <span>Spiel ID: <a href={window.location.href}>{window.location.pathname.substr(1)}</a></span><br />
-        <span>Teilnehmer: {connectionCount}</span>
-      </div>
+        <div className="topleft">
+          <h1>Halma</h1>
+          <div className="spielid">
+            <span>Spiel ID: <a href={window.location.href}>{window.location.pathname.substr(1)}</a></span><br />
+            <span>Teilnehmer: {connectionCount}</span>
+          </div>
+        </div>
       <div className="share">
         <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a>
       </div>

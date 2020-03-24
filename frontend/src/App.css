@@ -3,20 +3,23 @@ circle:hover {
   cursor: pointer;
 }
 
-.game h1 {
-  position: absolute;
-  top: 0;
-  margin-left: 10px;
-  margin-top: 10px;
-  text-transform: uppercase;
+body {
   color: #fff;
 }
 
-.game .spielid {
-  color: white;
+.topleft {
   position: absolute;
-  left: 10px;
-  top: 50px;
+  top: 0;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.game h1 {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.game .spielid {
   font-size: 12px;
 }
 
@@ -40,7 +43,7 @@ circle:hover {
   bottom: 10px;
   left: 10px;
   border: 0;
-  background: #666666;
+  background: #aaa;
   padding: 7px 10px;
   border-radius: 10px;
   cursor: pointer;
