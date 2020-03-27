@@ -20,6 +20,7 @@ body {
 
 .game svg {
   margin: 20px;
+  width: 100%;
 }
 
 .game h1 {

@@ -20,9 +20,5 @@ yarn dev
 
 ```
 docker build -t halma .
-docker container run -p 3030:3030 halma
+docker container run -p 9001:3030 halma -d
 ```
-
-# ToDo
-
-- [ ] choose initial state
