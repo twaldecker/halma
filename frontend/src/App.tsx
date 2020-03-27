@@ -482,7 +482,8 @@ function App() {
           <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a>
         </div>
 
-        <svg viewBox="0 0 540 620" style={{ maxHeight: "calc(100vh - 50px)", width: "100%" }} onClick={unselect}>
+
+        <svg viewBox="0 0 540 620" onClick={unselect}>
           <g><Triangle base={base} startx={startx} starty={starty} countLines={countLines} /></g>
           <g
             transform={`rotate(180, ${startx + base / 2}, ${starty +

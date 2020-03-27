@@ -13,6 +13,14 @@ body {
   margin-left: 10px;
   margin-top: 5px;
 }
+.game {
+  height: 100vh;
+  display: flex;
+}
+
+.game svg {
+  margin: 20px;
+}
 
 .game h1 {
   text-transform: uppercase;
@@ -21,10 +29,6 @@ body {
 
 .game .spielid {
   font-size: 12px;
-}
-
-.game .spielid a {
-  color: white;
 }
 
 .game .share {
@@ -53,31 +57,4 @@ body {
   .game .share {
     display: block;
   }
-}
-
-/* Extra Small Devices, .visible-xs-* */
-@media only screen and (max-width: 767px) and (orientation: portrait) {
-  .game .spielid {
-    left: 20px;
-    top: 50px;
-  }
-}
-
-@media only screen and (max-width: 767px) and (orientation: landscape) {
-
-}
-
-/* Small Devices, .visible-sm-* */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-
-}
-
-/* Medium Devices, .visible-md-* */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-
-}
-
-/* Large Devices, .visible-lg-* */
-@media only screen and (min-width: 1200px) {
-
 }
