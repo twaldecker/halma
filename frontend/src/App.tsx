@@ -277,9 +277,19 @@ function height(length: number) {
 }
 
 function Pin({x, y, pin, pinClick}: {x: number, y: number, pin: GameState, pinClick}) {
+  let selectionMark = <g></g>
+  if(pin.sel) {
+    selectionMark = <g>
+      {[0, 120, 240].map(e => <g transform={`translate(${x}, ${y-15}) rotate(${e}, 0, 15)`}>
+          <path d={`M 0 0 l -5 -6 l 10 0 l -5 6`} fill="#fff" className="selectionArrow"/>
+        </g>
+      )}
+    </g>
+  }
   return (
     <>
-      <circle r="12" fill={pin.color} cx={x} cy={y} stroke={pin.sel?`#fff`:''} />
+      {selectionMark}
+      <circle r="12" fill={pin.color} cx={x} cy={y} />
       <circle r="20" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={pinClick} />
     </>
   );
