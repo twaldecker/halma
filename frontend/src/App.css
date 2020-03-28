@@ -14,7 +14,7 @@ body {
   margin-top: 5px;
 }
 .game {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   position:fixed;

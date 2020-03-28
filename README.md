@@ -20,5 +20,5 @@ yarn dev
 
 ```
 docker build -t halma .
-docker container run -p 9001:3030 halma -d
+docker container run -p 9001:3030 -d halma
 ```
