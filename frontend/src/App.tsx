@@ -272,6 +272,12 @@ const GameContext = React.createContext<{game: GameState[], setGame: (s: GameSta
 
 const Game = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1]
 
+const base = 500;
+const startx = 20;
+const starty = 160;
+const holesStarty = 16;
+const countLines = 12;
+
 function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
@@ -342,12 +348,7 @@ function Hole(x: number, y: number, row: number, i: number) {
   )
 }
 
-function Triangle({base, startx, starty, countLines}: {
-  base: number,
-  startx: number,
-  starty: number,
-  countLines: number
-}) {
+function Triangle() {
   let base_height = height(base);
 
   let lines: any[] = [];
@@ -420,11 +421,7 @@ function Holes({starty, base, startx, countLines}: {starty: number, base: number
 }
 
 function App() {
-  let base = 500;
-  let startx = 20;
-  let starty = 160;
-  let holesStarty = 16;
-  let countLines = 12;
+
 
   const channel = new URL(window.location.href).pathname
 
@@ -494,14 +491,14 @@ function App() {
 
 
         <svg viewBox="0 0 540 620" onClick={unselect}>
-          <g><Triangle base={base} startx={startx} starty={starty} countLines={countLines} /></g>
+          <g><Triangle /></g>
           <g
             transform={`rotate(180, ${startx + base / 2}, ${starty +
               height(base) / 2}) translate(0, ${height(
                 (4 * base) / countLines
                 )})`}
                 >
-            <Triangle base={base} startx={startx} starty={starty} countLines={countLines} />
+            <Triangle />
           </g>
 
           <Holes starty={holesStarty} base={base} startx={startx} countLines={countLines} />
