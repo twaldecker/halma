@@ -320,18 +320,18 @@ function Pin({pin}: {pin: GameState}) {
   let selectionMark = <g></g>
   if(pin.sel) {
     selectionMark = <g>
-      {[0, 120, 240].map(e => <g transform={`translate(${x}, ${y-15}) rotate(${e}, 0, 15)`}>
+      {[0, 120, 240].map(e => <g transform={`translate(0, -15) rotate(${e}, 0, 15)`}>
           <path d={`M 0 0 l -5 -6 l 10 0 l -5 6`} fill="#fff" className="selectionArrow"/>
         </g>
       )}
     </g>
   }
   return (
-    <>
+    <g transform={`translate(${x}, ${y})`} className="pin">
       {selectionMark}
-      <circle r="12" fill={pin.color} cx={x} cy={y} />
-      <circle r="20" style={{fill: '#000', opacity: 0}} cx={x} cy={y} onClick={pinClick} />
-    </>
+      <circle r="12" fill={pin.color} cx="0" cy="0" />
+      <circle r="20" style={{fill: '#000', opacity: 0}} cx="0" cy="0" onClick={pinClick} />
+    </g>
   );
 }
 
@@ -481,6 +481,7 @@ function App() {
 
 
         <svg viewBox="0 0 540 620" onClick={unselect}>
+          <animate xlinkHref=".pin" dur="1s" />
           <g><Triangle /></g>
           <g
             transform={`rotate(180, ${startx + base / 2}, ${starty +
