@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Halma from './Halma';
+import Muehle from './Muehle';
 import * as serviceWorker from './serviceWorker';
 import Start from './Start';
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
@@ -10,8 +11,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        <Route path="/:id">
+        <Route path="/halma/:id">
           <Halma />
+        </Route>
+        <Route path="/muehle/:id">
+          <Muehle />
         </Route>
         <Route path="/">
           <Start />

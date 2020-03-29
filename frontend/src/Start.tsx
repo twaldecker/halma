@@ -3,16 +3,26 @@ import "./Start.css"
 import { useHistory } from "react-router-dom";
 import generate from 'project-name-generator';
 import halma6 from './assets/halma6.svg';
+import { List, Drawer, ListItem, ListItemText } from "@material-ui/core";
 
 function Start() {
   const history = useHistory();
   const [gameId, setGameId] = useState("");
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const go = () => {
+  const go = (game) => {
     if(!gameId) {
-      history.push(generate().dashed)
+      history.push(game +"/"+ generate().dashed)
     } else {
       history.push(gameId);
+    }
+  }
+
+  const startButton = () => {
+    if (gameId) {
+      history.push(gameId);
+    } else {
+      setDrawerOpen(true);
     }
   }
 
@@ -44,9 +54,20 @@ function Start() {
         Bei einem neuen Spiel können Sie das Feld leer lassen. Möchten Sie
         einem Spiel beitreten, geben Sie bitte die Spiel ID an.
       </div>
-      <button onClick={go}>
+      <button onClick={e => startButton()}>
         Spiel starten oder beitreten
       </button>
+
+      <Drawer anchor="bottom" open={drawerOpen} onClose={e => setDrawerOpen(false)}>
+        <List>
+          <ListItem button onClick={e => go("halma")}>
+            <ListItemText>Halma</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>Mühle (kommt bald!)</ListItemText>
+          </ListItem>
+        </List>
+      </Drawer>
     </div>
   );
 }
