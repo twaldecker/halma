@@ -277,6 +277,7 @@ const startx = 20;
 const starty = 160;
 const holesStarty = 16;
 const countLines = 12;
+const smallTriangle = base / countLines;
 
 function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
@@ -315,7 +316,7 @@ async function getInitialGameState(client, setGame) {
   }
 }
 
-function Hole(x: number, y: number, row: number, i: number) {
+function Hole({x, y, row, i}:{x: number, y: number, row: number, i: number}) {
   const {game, setGame} = useContext(GameContext)!
   const currentCoordinates = n => n.row == row && n.i == i
 
@@ -386,43 +387,24 @@ function Triangle() {
   );
 }
 
-function HoleLine(x: number, y: number, row: number, step: number, base: number) {
+function HoleLine({row}: {row: number}) {
   let holesX: number[] = [];
-  let yPos = (line) => y + height(step) * line
+  let yPos = (line) => holesStarty + height(smallTriangle) * line
   for (let i = 0; i < Game[row]; i++)
-    holesX.push(x+i*step)
+    holesX.push(startx+i*smallTriangle)
 
-  return holesX.map((x, i) => Hole(x+base/2-step/2*(Game[row]-1), yPos(row), row, i))
+  return (<>
+    {holesX.map((x, i) => <Hole x={(x+base/2-smallTriangle/2*(Game[row]-1))} y={yPos(row)} row={row} i={i} />)}
+  </>)
 }
 
-function Holes({starty, base, startx, countLines}: {starty: number, base: number, startx: number, countLines: number}) {
-  let smallTriangle = base / countLines;
-  return (
-    <>
-      {HoleLine(startx, starty, 0, smallTriangle, base)}
-      {HoleLine(startx, starty, 1, smallTriangle, base)}
-      {HoleLine(startx, starty, 2, smallTriangle, base)}
-      {HoleLine(startx, starty, 3, smallTriangle, base)}
-      {HoleLine(startx, starty, 4, smallTriangle, base)}
-      {HoleLine(startx, starty, 5, smallTriangle, base)}
-      {HoleLine(startx, starty, 6, smallTriangle, base)}
-      {HoleLine(startx, starty, 7, smallTriangle, base)}
-      {HoleLine(startx, starty, 8, smallTriangle, base)}
-      {HoleLine(startx, starty, 9, smallTriangle, base)}
-      {HoleLine(startx, starty, 10, smallTriangle, base)}
-      {HoleLine(startx, starty, 11, smallTriangle, base)}
-      {HoleLine(startx, starty, 12, smallTriangle, base)}
-      {HoleLine(startx, starty, 13, smallTriangle, base)}
-      {HoleLine(startx, starty, 14, smallTriangle, base)}
-      {HoleLine(startx, starty, 15, smallTriangle, base)}
-      {HoleLine(startx, starty, 16, smallTriangle, base)}
-    </>
-  )
+function Holes() {
+  return (<>
+    {[...Array(16).keys()].map(n => <HoleLine row={n} />)}
+    </>)
 }
 
 function App() {
-
-
   const channel = new URL(window.location.href).pathname
 
   const [game, setGame] = useState(initialGame2p)
@@ -501,7 +483,7 @@ function App() {
             <Triangle />
           </g>
 
-          <Holes starty={holesStarty} base={base} startx={startx} countLines={countLines} />
+          <Holes />
         </svg>
         <button className="reset-button" onClick={e => setAnchorEl(e.currentTarget)}>Neues Spiel</button>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)}>
