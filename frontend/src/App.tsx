@@ -354,8 +354,6 @@ function Triangle() {
 
   let lines: any[] = [];
 
-  let smallTriangle = base / countLines;
-
   for (let i = 1; i < countLines; i++) {
     lines.push({
       ax: startx + (smallTriangle / 2) * i,
@@ -400,7 +398,7 @@ function HoleLine({row}: {row: number}) {
 
 function Holes() {
   return (<>
-    {[...Array(16).keys()].map(n => <HoleLine row={n} />)}
+    {[...Game.keys()].map(n => <HoleLine row={n} />)}
     </>)
 }
 
