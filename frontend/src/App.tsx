@@ -14,7 +14,6 @@ interface GameState {
   sel: boolean
 }
 
-
 const initialGame2p: GameState[] = [
   {id: 1, color: '#FF9800', row: 12, i: 4, sel: false},
   {id: 2, color: '#FF9800', row: 12, i: 5, sel: false},
@@ -499,7 +498,7 @@ function App() {
           <Pins />
         </svg>
         <button className="reset-button" onClick={e => setAnchorEl(e.currentTarget)}>Neues Spiel</button>
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)}>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={_ => setAnchorEl(null)}>
           <MenuItem onClick={_ => newGame(initialGame2p)}>2 Spieler</MenuItem>
           <MenuItem onClick={_ => newGame(initialGame3p)}>3 Spieler</MenuItem>
           <MenuItem onClick={_ => newGame(initialGame4p)}>4 Spieler</MenuItem>
