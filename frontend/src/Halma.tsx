@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./Halma.css";
 import connection from './feathers';
 import { motion } from "framer-motion"
+import whatsappImage from "./assets/whatsapp.png"
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -482,7 +483,7 @@ function App() {
           </div>
         </div>
         <div className="share">
-          <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a>
+          <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src={whatsappImage}></img></a>
         </div>
 
 
