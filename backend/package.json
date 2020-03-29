@@ -44,6 +44,7 @@
     "cors": "^2.8.5",
     "feathers-memory": "^4.1.0",
     "helmet": "^3.21.2",
+    "matomo-tracker": "^2.2.1",
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0"
   },

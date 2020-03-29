@@ -1,12 +1,18 @@
 import '@feathersjs/transport-commons';
-import { HookContext } from '@feathersjs/feathers';
+//import { HookContext } from '@feathersjs/feathers';
 import { Application } from './declarations';
+var MatomoTracker = require('matomo-tracker');
+var matomo = new MatomoTracker(2, 'https://analytics.joomla-upgrade-service.de/matomo.php');
 
 export default function(app: Application) {
   if(typeof app.channel !== 'function') {
     // If no real-time functionality has been configured just return
     return;
   }
+
+  matomo.on('error', (err: any) => {
+    console.log('error tracking request: ', err);
+  });
 
   let channelConnections: any = [];
 
@@ -17,6 +23,12 @@ export default function(app: Application) {
       channelConnections[channel] = 0;
     }
     channelConnections[channel]++;
+
+    matomo.track({
+      url: 'http://halma.wunderwald.games/',
+      action_name: 'Connected User'
+    });
+
     app.service('connection').create({data: {channel, connections: channelConnections[channel]}})
     app.channel(channel).join(connection);
   });
