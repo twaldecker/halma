@@ -464,7 +464,9 @@ function App() {
   }
 
   const newGame = state => {
-    setFeatherGame(state)
+    if(window.confirm("Neues spiel?")) {
+      setFeatherGame(state)
+    }
     setAnchorEl(null)
   }
 
