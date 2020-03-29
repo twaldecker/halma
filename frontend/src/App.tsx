@@ -283,7 +283,40 @@ function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
 
-function Pin({x, y, pin, pinClick}: {x: number, y: number, pin: GameState, pinClick}) {
+async function getInitialGameState(client, setGame) {
+  if(client) {
+    var game = await client.service('game').find()
+
+    if (game.data.length != 0) {
+      let gameData = game.data[0].data.game
+      setGame(gameData)
+    }
+    else {
+      setGame(initialGame2p);
+    }
+  }
+}
+
+function position(row: number, i: number) {
+  return {
+    x: ((startx+i*smallTriangle)+base/2-smallTriangle/2*(Game[row]-1)),
+    y: holesStarty + height(smallTriangle) * row
+  }
+}
+
+function Pin({pin}: {pin: GameState}) {
+  const {game, setGame} = useContext(GameContext)!
+  const {x, y} = position(pin.row, pin.i)
+
+  const currentCoordinates = n => n.row === pin.row && n.i === pin.i
+
+  const pinClick = e => {
+    e.stopPropagation()
+    let newGame = game.filter(s => !currentCoordinates(s)).map(s => ({...s, sel: false}))
+    newGame.push({...pin, sel: true} as GameState)
+    setGame(newGame)
+  }
+
   let selectionMark = <g></g>
   if(pin.sel) {
     selectionMark = <g>
@@ -302,39 +335,9 @@ function Pin({x, y, pin, pinClick}: {x: number, y: number, pin: GameState, pinCl
   );
 }
 
-async function getInitialGameState(client, setGame) {
-  if(client) {
-    var game = await client.service('game').find()
-
-    if (game.data.length != 0) {
-      let gameData = game.data[0].data.game
-      setGame(gameData)
-    }
-    else {
-      setGame(initialGame2p);
-    }
-  }
-}
-
-function position(row: number, i: number) {
-
-  return {x: ((startx+i*smallTriangle)+base/2-smallTriangle/2*(Game[row]-1)), y: holesStarty + height(smallTriangle) * row}
-}
-
-
 function Hole({row, i}:{row: number, i: number}) {
   const {game, setGame} = useContext(GameContext)!
   const {x, y} = position(row, i);
-  const currentCoordinates = n => n.row == row && n.i == i
-
-  let pin = game.find(currentCoordinates)
-
-  const pinClick = e => {
-    e.stopPropagation()
-    let newGame = game.filter(s => !currentCoordinates(s)).map(s => ({...s, sel: false}))
-    newGame.push({...pin, sel: true} as GameState)
-    setGame(newGame)
-  }
 
   const holeClick = e => {
     e.stopPropagation()
@@ -346,8 +349,6 @@ function Hole({row, i}:{row: number, i: number}) {
     }
   }
 
-  if(pin)
-    return <Pin x={x} y={y} pin={pin} pinClick={pinClick} />
   return (
     <>
       <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
@@ -392,7 +393,6 @@ function Triangle() {
   );
 }
 
-
 function Holes() {
   return (<>
     {[...Game.keys()].map(row => {
@@ -401,6 +401,15 @@ function Holes() {
       }
     )}
   </>)
+}
+
+function Pins() {
+  const {game, setGame} = useContext(GameContext)!
+
+  return (<>
+    {game.map(pin => <Pin pin={pin} />)}
+  </>)
+
 }
 
 function App() {
@@ -483,6 +492,7 @@ function App() {
           </g>
 
           <Holes />
+          <Pins />
         </svg>
         <button className="reset-button" onClick={e => setAnchorEl(e.currentTarget)}>Neues Spiel</button>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)}>
