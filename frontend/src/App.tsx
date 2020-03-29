@@ -316,8 +316,15 @@ async function getInitialGameState(client, setGame) {
   }
 }
 
-function Hole({x, y, row, i}:{x: number, y: number, row: number, i: number}) {
+function position(row: number, i: number) {
+
+  return {x: ((startx+i*smallTriangle)+base/2-smallTriangle/2*(Game[row]-1)), y: holesStarty + height(smallTriangle) * row}
+}
+
+
+function Hole({row, i}:{row: number, i: number}) {
   const {game, setGame} = useContext(GameContext)!
+  const {x, y} = position(row, i);
   const currentCoordinates = n => n.row == row && n.i == i
 
   let pin = game.find(currentCoordinates)
@@ -385,21 +392,15 @@ function Triangle() {
   );
 }
 
-function HoleLine({row}: {row: number}) {
-  let holesX: number[] = [];
-  let yPos = (line) => holesStarty + height(smallTriangle) * line
-  for (let i = 0; i < Game[row]; i++)
-    holesX.push(startx+i*smallTriangle)
-
-  return (<>
-    {holesX.map((x, i) => <Hole x={(x+base/2-smallTriangle/2*(Game[row]-1))} y={yPos(row)} row={row} i={i} />)}
-  </>)
-}
 
 function Holes() {
   return (<>
-    {[...Game.keys()].map(n => <HoleLine row={n} />)}
-    </>)
+    {[...Game.keys()].map(row => {
+      return [...Array(Game[row])].map((x, i) =>
+        <Hole row={row} i={i} />)
+      }
+    )}
+  </>)
 }
 
 function App() {
