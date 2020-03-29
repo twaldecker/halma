@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Halma from './Halma';
 import * as serviceWorker from './serviceWorker';
 import Start from './Start';
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
@@ -11,7 +11,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route path="/:id">
-          <App />
+          <Halma />
         </Route>
         <Route path="/">
           <Start />

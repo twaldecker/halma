@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./App.css";
+import "./Halma.css";
 import connection from './feathers';
 import { motion } from "framer-motion"
 
