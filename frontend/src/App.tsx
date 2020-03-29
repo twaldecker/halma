@@ -321,7 +321,7 @@ function Pin({pin}: {pin: GameState}) {
   let selectionMark = <g></g>
   if(pin.sel) {
     selectionMark = <g>
-      {[0, 120, 240].map(e => <g transform={`translate(0, -15) rotate(${e}, 0, 15)`}>
+      {[0, 120, 240].map((e, i) => <g key={i} transform={`translate(0, -15) rotate(${e}, 0, 15)`}>
           <path d={`M 0 0 l -5 -6 l 10 0 l -5 6`} fill="#fff" className="selectionArrow"/>
         </g>
       )}
@@ -385,8 +385,9 @@ function Triangle() {
         fill="none"
         stroke="#999"
       />
-      {lines.map(i => (
+      {lines.map((i, j) => (
         <path
+          key={j}
           d={`M ${i.cx} ${i.cy} L ${i.ax} ${i.ay} L ${i.bx} ${i.by} L ${i.dx} ${i.dy}`}
           fill="none"
           stroke="#999"
