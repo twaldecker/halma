@@ -360,50 +360,29 @@ function Hole({row, i}:{row: number, i: number}) {
   )
 }
 
-function Triangle() {
-  let base_height = height(base);
-
+function Spielfeld() {
   let lines: any[] = [];
-
-  for (let i = 1; i < countLines; i++) {
-    lines.push({
-      ax: startx + (smallTriangle / 2) * i,
-      ay: starty + height(smallTriangle) * i,
-      bx: startx + base - (smallTriangle / 2) * i,
-      by: starty + height(smallTriangle) * i,
-      cx: startx + smallTriangle * i,
-      cy: starty,
-      dx: startx + base - smallTriangle * i,
-      dy: starty
-    });
-  }
 
   return (
     <>
-      <path
-        d={`M ${startx} ${starty} l ${base} 0 l -${base / 2} ${base_height} z`}
-        fill="none"
-        stroke="#999"
-      />
-      {lines.map((i, j) => (
-        <path
-          key={j}
-          d={`M ${i.cx} ${i.cy} L ${i.ax} ${i.ay} L ${i.bx} ${i.by} L ${i.dx} ${i.dy}`}
-          fill="none"
-          stroke="#999"
-        />
-      ))}
+      <rect x={0} y={0} height={600} width={600} stroke="#fff" />
+      <rect x={100} y={100} height={400} width={400} stroke="#fff" />
+      <rect x={200} y={200} height={200} width={200} stroke="#fff" />
+      <line x1={300} y1={0} x2={300} y2={200} stroke="#fff"/>
+      <line x1={300} y1={600} x2={300} y2={400} stroke="#fff"/>
+      <line x1={0} y1={300} x2={200} y2={300} stroke="#fff"/>
+      <line x1={400} y1={300} x2={600} y2={300} stroke="#fff"/>
     </>
   );
 }
 
 function Holes() {
   return (<>
-    {[...Game.keys()].map(row => {
+    {/* {[...Game.keys()].map(row => {
       return [...Array(Game[row])].map((x, i) =>
         <Hole row={row} i={i} key={i} />)
       }
-    )}
+    )} */}
   </>)
 }
 
@@ -475,7 +454,7 @@ function App() {
     <GameContext.Provider value={{game, setGame: setFeatherGame}}>
       <div className="game">
         <div className="topleft">
-          <h1>Halma</h1>
+          <h1>Mühle</h1>
           <div className="spielid">
             <span>Spiel ID: <a href={window.location.href}>{window.location.pathname.substr(1)}</a></span><br />
             <span>Teilnehmer: {connectionCount}</span>
@@ -485,29 +464,12 @@ function App() {
           <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src="whatsapp.png"></img></a>
         </div>
 
+        <svg onClick={unselect}>
+          <Spielfeld />
 
-        <svg viewBox="0 0 540 620" onClick={unselect}>
-          <g><Triangle /></g>
-          <g
-            transform={`rotate(180, ${startx + base / 2}, ${starty +
-              height(base) / 2}) translate(0, ${height(
-                (4 * base) / countLines
-                )})`}
-                >
-            <Triangle />
-          </g>
-
-          <Holes />
-          <Pins />
+          {/* <Holes />
+          <Pins /> */}
         </svg>
-        <button className="reset-button" onClick={e => setAnchorEl(e.currentTarget)}>Neues Spiel</button>
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={_ => setAnchorEl(null)}>
-          <MenuItem onClick={_ => newGame(initialGame2p)}>2 Spieler</MenuItem>
-          <MenuItem onClick={_ => newGame(initialGame3p)}>3 Spieler</MenuItem>
-          <MenuItem onClick={_ => newGame(initialGame4p)}>4 Spieler</MenuItem>
-          <MenuItem onClick={_ => newGame(initialGame5p)}>5 Spieler</MenuItem>
-          <MenuItem onClick={_ => newGame(initialGame6p)}>6 Spieler</MenuItem>
-        </Menu>
       </div>
     </GameContext.Provider>
   );

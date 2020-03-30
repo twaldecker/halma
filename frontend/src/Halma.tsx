@@ -6,6 +6,7 @@ import whatsappImage from "./assets/whatsapp.png"
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import { Link } from "@material-ui/core";
 
 interface GameState {
   id: number
@@ -478,7 +479,7 @@ function App() {
         <div className="topleft">
           <h1>Halma</h1>
           <div className="spielid">
-            <span>Spiel ID: <a href={window.location.href}>{window.location.pathname.substr(1)}</a></span><br />
+            <span>Spiel ID: <Link underline="always" href={window.location.href}>{window.location.pathname.substr(1)}</Link></span><br />
             <span>Teilnehmer: {connectionCount}</span>
           </div>
         </div>
