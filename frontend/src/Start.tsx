@@ -55,13 +55,6 @@ function Start() {
   const theme = useTheme();
   const classes = useStyles();
 
-  const go = game => {
-    if (!gameId) {
-    } else {
-      history.push(gameId);
-    }
-  };
-
   const startButton = () => {
     if (gameId) {
       history.push(gameId);
@@ -133,8 +126,8 @@ function Start() {
           Bei einem neuen Spiel können Sie das Feld leer lassen. Möchten Sie
           einem Spiel beitreten, geben Sie bitte die Spiel ID an.
         </p>
-        <Button variant="contained" color="primary" disabled={!gameId && game == 1} onClick={e => startButton()}>
-          {gameId ? "Spiel beitreten" : (game == 1) ? "kommt bald" :"neues Spiel erstellen"}
+        <Button variant="contained" color="primary" onClick={e => startButton()}>
+          {gameId ? "Spiel beitreten" : "neues Spiel erstellen"}
         </Button>
       </div>
   );
