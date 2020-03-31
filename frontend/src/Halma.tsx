@@ -290,7 +290,7 @@ async function getInitialGameState(client, setGame) {
   if(client) {
     var game = await client.service('game').find()
 
-    if (game.data.length != 0) {
+    if (game.data.length !== 0) {
       let gameData = game.data[0].data.game
       setGame(gameData)
     }
@@ -410,7 +410,7 @@ function Holes() {
 }
 
 function Pins() {
-  const {game, setGame} = useContext(GameContext)!
+  const {game} = useContext(GameContext)!
 
   return (<>
     {game.map(pin => <Pin key={pin.id} pin={pin} />)}
@@ -451,7 +451,7 @@ function App() {
       const gameService = client.service('game')
 
       gameService.find().then(result => {
-        if (result.data.length == 0) {
+        if (result.data.length === 0) {
           gameService.create({
             data: { channel, game }})
         } else {
@@ -484,7 +484,7 @@ function App() {
           </div>
         </div>
         <div className="share">
-          <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src={whatsappImage}></img></a>
+          <a href={"whatsapp://send?text=Ich+möchte+mit+Dir+Halma+spielen.+Jetzt+hier+klicken:+"+window.location.href} data-action="share/whatsapp/share" target="_blank"><img src={whatsappImage} alt="whatsapp logo"/></a>
         </div>
 
 

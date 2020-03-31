@@ -85,7 +85,7 @@ function Start() {
           {games.map((game, i) => (
             <div key={i} style={{display: 'flex', flexDirection: 'column'}}>
               <h2>{game.name}</h2>
-              <img src={game.img} className={classes.image} />
+              <img src={game.img} alt={game.name + "preview"} className={classes.image} />
             </div>
           ))}
         </SwipeableViews>
