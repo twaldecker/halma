@@ -58,8 +58,8 @@ async function getInitialGameState(client, setGame) {
 
 function position(row: number, i: number) {
   return {
-    x: (row<7)? i * base: 6*base+ (row-7)*40 + 40,
-    y: (row<7) ? row * base: (row-7)*180+i*33
+    x: (row<7)? i * base: base*6/8*i,
+    y: (row<7) ? row * base: -40 + (row-7)*(base*6 + 80)
   };
 }
 
@@ -97,7 +97,7 @@ function Pin({ pin }: { pin: GameState }) {
       {pin.sel? selectionMark : ""}
       <circle r="12" fill={pin.color} cx="0" cy="0" />
       <circle
-        r="20"
+        r="30"
         style={{ fill: "#000", opacity: 0 }}
         cx="0"
         cy="0"
@@ -128,7 +128,7 @@ function Hole({ row, i, big }: { row: number; i: number; big?: boolean }) {
     <>
       <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
       <circle
-        r={big? 40 : 20}
+        r={big? 40 : 30}
         style={{ fill: "#000", opacity: 0 }}
         cx={x}
         cy={y}
@@ -314,7 +314,7 @@ function App() {
           </a>
         </div>
 
-        <svg viewBox="-20 -20 580 480" onClick={unselect}>
+        <svg viewBox="-20 -60 490 580" onClick={unselect}>
           <Spielfeld />
 
           <Holes />
