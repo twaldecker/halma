@@ -70,7 +70,7 @@ function Start() {
           Spiele Brettspiele, zum Beispiel Halma jetzt online mit deinen Freunden.
           Erstelle ein neues Spiel und teile den Link, damit deine Freunde beitreten können.
         </p>
-        <SwipeableViews index={game}>
+        <SwipeableViews index={game} onChangeIndex={i => setGame(i)}>
           {games.map((game, i) => (
             <div key={i} style={{display: 'flex', flexDirection: 'column'}}>
               <h2>{game.name}</h2>
