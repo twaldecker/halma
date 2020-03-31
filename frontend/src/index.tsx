@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Halma from './Halma';
 import Muehle from './Muehle';
+import Pachisi from './Pachisi';
+import Dame from './Dame';
 import * as serviceWorker from './serviceWorker';
 import Start from './Start';
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
@@ -19,6 +21,12 @@ ReactDOM.render(
           </Route>
           <Route path="/muehle/:id">
             <Muehle />
+          </Route>
+          <Route path="/pachisi/:id">
+            <Pachisi />
+          </Route>
+          <Route path="/dame/:id">
+            <Dame />
           </Route>
           <Route path="/">
             <Start />

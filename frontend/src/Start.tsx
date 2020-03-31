@@ -3,10 +3,11 @@ import { useHistory } from "react-router-dom";
 import generate from "project-name-generator";
 import halma6 from "./assets/halma6.svg";
 import muehle from "./assets/muehle.svg";
+import pachisi from "./assets/pachisi.svg";
+import dame from "./assets/dame.svg";
 import {
   MobileStepper,
   Button,
-  Container,
   useTheme,
   makeStyles,
   Theme,
@@ -20,12 +21,23 @@ const games = [
   {
     name: "Halma",
     img: halma6,
-    url: 'halma'
-  },
-  {
+    url: 'halma',
+    active: true,
+  }, {
     name: "Mühle",
     img: muehle,
-    url: 'muehle'
+    url: 'muehle',
+    active: true,
+  }, {
+    name: "Pachisi",
+    img: pachisi,
+    url: 'pachisi',
+    active: false,
+  }, {
+    name: "Dame",
+    img: dame,
+    url: 'dame',
+    active: false,
   }
 ];
 
@@ -50,7 +62,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 function Start() {
   const history = useHistory();
   const [gameId, setGameId] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [game, setGame] = useState(0);
   const theme = useTheme();
   const classes = useStyles();
@@ -126,8 +137,8 @@ function Start() {
           Bei einem neuen Spiel können Sie das Feld leer lassen. Möchten Sie
           einem Spiel beitreten, geben Sie bitte die Spiel ID an.
         </p>
-        <Button variant="contained" color="primary" onClick={e => startButton()}>
-          {gameId ? "Spiel beitreten" : "neues Spiel erstellen"}
+        <Button variant="contained" color="primary" disabled={!games[game].active && !gameId } onClick={e => startButton()}>
+          {gameId ? "Spiel beitreten" : !games[game].active? "Bald verfügbar": "neues Spiel erstellen"}
         </Button>
       </div>
   );
