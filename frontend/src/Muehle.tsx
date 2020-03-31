@@ -35,6 +35,8 @@ const initialGame2p: GameState[] = [
   { id: 18, color: "#00BCD4", row: 8, i: 8, sel: false },
 ];
 
+const base = 75
+
 const GameContext = React.createContext<{
   game: GameState[];
   setGame: (s: GameState[]) => void;
@@ -55,8 +57,8 @@ async function getInitialGameState(client, setGame) {
 
 function position(row: number, i: number) {
   return {
-    x: (row<7)? i * 100: 670+(i%3)*30,
-    y: (row<7) ? row * 100: 120+(row-7)*300+Math.floor(i/3)*30
+    x: (row<7)? i * base: 6*base+ (row-7)*40 + 40,
+    y: (row<7) ? row * base: (row-7)*180+i*33
   };
 }
 
@@ -140,27 +142,27 @@ function Spielfeld() {
 
   return (
     <>
-      <rect x={0} y={0} height={600} width={600} stroke="#fff" fill="none" />
+      <rect x={0*base} y={0*base} height={6*base} width={6*base} stroke="#fff" fill="none" />
       <rect
-        x={100}
-        y={100}
-        height={400}
-        width={400}
+        x={1*base}
+        y={1*base}
+        height={4*base}
+        width={4*base}
         stroke="#fff"
         fill="none"
       />
       <rect
-        x={200}
-        y={200}
-        height={200}
-        width={200}
+        x={2*base}
+        y={2*base}
+        height={2*base}
+        width={2*base}
         stroke="#fff"
         fill="none"
       />
-      <line x1={300} y1={0} x2={300} y2={200} stroke="#fff" fill="none" />
-      <line x1={300} y1={600} x2={300} y2={400} stroke="#fff" fill="none" />
-      <line x1={0} y1={300} x2={200} y2={300} stroke="#fff" fill="none" />
-      <line x1={400} y1={300} x2={600} y2={300} stroke="#fff" fill="none" />
+      <line x1={3*base} y1={0} x2={3*base} y2={2*base} stroke="#fff" fill="none" />
+      <line x1={3*base} y1={6*base} x2={3*base} y2={4*base} stroke="#fff" fill="none" />
+      <line x1={0} y1={3*base} x2={2*base} y2={3*base} stroke="#fff" fill="none" />
+      <line x1={4*base} y1={3*base} x2={6*base} y2={3*base} stroke="#fff" fill="none" />
     </>
   );
 }
@@ -311,7 +313,7 @@ function App() {
           </a>
         </div>
 
-        <svg viewBox="-20 -20 740 640" onClick={unselect}>
+        <svg viewBox="-20 -20 580 480" onClick={unselect}>
           <Spielfeld />
 
           <Holes />
