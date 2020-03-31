@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./Halma.css";
 import connection from "./feathers";
 import { motion } from "framer-motion";
+import whatsappImage from "./assets/whatsapp.png"
 
 import Link from "@material-ui/core/Link";
 
@@ -309,7 +310,7 @@ function App() {
             data-action="share/whatsapp/share"
             target="_blank"
           >
-            <img src="whatsapp.png"></img>
+            <img src={whatsappImage} />
           </a>
         </div>
 
