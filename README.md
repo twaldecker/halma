@@ -1,6 +1,18 @@
-# A Halma game
+# A Collection of Boardgames
 
 Based on a Feathers Backend and a React frontend.
+
+![halma board game preview](./frontend/public/logo192.png)
+
+## Games
+
+* Halma
+* Mühle
+
+Work in progress
+
+* Pachisi
+* Dame
 
 ## Development
 
