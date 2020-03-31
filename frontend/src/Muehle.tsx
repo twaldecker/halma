@@ -107,7 +107,7 @@ function Pin({ pin }: { pin: GameState }) {
   );
 }
 
-function Hole({ row, i }: { row: number; i: number }) {
+function Hole({ row, i, big }: { row: number; i: number; big?: boolean }) {
   const { game, setGame } = useContext(GameContext)!;
   const { x, y } = position(row, i);
 
@@ -128,7 +128,7 @@ function Hole({ row, i }: { row: number; i: number }) {
     <>
       <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
       <circle
-        r="20"
+        r={big? 40 : 20}
         style={{ fill: "#000", opacity: 0 }}
         cx={x}
         cy={y}
@@ -171,30 +171,30 @@ function Spielfeld() {
 function Holes() {
   return (
     <>
-      <Hole row={0} i={0} />
-      <Hole row={0} i={3} />
-      <Hole row={0} i={6} />
-      <Hole row={1} i={1} />
-      <Hole row={1} i={3} />
-      <Hole row={1} i={5} />
-      <Hole row={2} i={2} />
-      <Hole row={2} i={3} />
-      <Hole row={2} i={4} />
-      <Hole row={3} i={0} />
-      <Hole row={3} i={1} />
-      <Hole row={3} i={2} />
-      <Hole row={3} i={4} />
-      <Hole row={3} i={5} />
-      <Hole row={3} i={6} />
-      <Hole row={4} i={2} />
-      <Hole row={4} i={3} />
-      <Hole row={4} i={4} />
-      <Hole row={5} i={1} />
-      <Hole row={5} i={3} />
-      <Hole row={5} i={5} />
-      <Hole row={6} i={0} />
-      <Hole row={6} i={3} />
-      <Hole row={6} i={6} />
+      <Hole row={0} i={0} big={true}/>
+      <Hole row={0} i={3}  big={true}/>
+      <Hole row={0} i={6}  big={true}/>
+      <Hole row={1} i={1}  big={true}/>
+      <Hole row={1} i={3}  big={true}/>
+      <Hole row={1} i={5}  big={true}/>
+      <Hole row={2} i={2}  big={true}/>
+      <Hole row={2} i={3}  big={true}/>
+      <Hole row={2} i={4}  big={true}/>
+      <Hole row={3} i={0}  big={true}/>
+      <Hole row={3} i={1}  big={true}/>
+      <Hole row={3} i={2}  big={true}/>
+      <Hole row={3} i={4}  big={true}/>
+      <Hole row={3} i={5}  big={true}/>
+      <Hole row={3} i={6}  big={true}/>
+      <Hole row={4} i={2}  big={true}/>
+      <Hole row={4} i={3}  big={true}/>
+      <Hole row={4} i={4}  big={true}/>
+      <Hole row={5} i={1}  big={true}/>
+      <Hole row={5} i={3}  big={true}/>
+      <Hole row={5} i={5}  big={true}/>
+      <Hole row={6} i={0}  big={true}/>
+      <Hole row={6} i={3}  big={true}/>
+      <Hole row={6} i={6}  big={true}/>
       <g className="startingPositions">
         <Hole row={7} i={0} />
         <Hole row={7} i={1} />
