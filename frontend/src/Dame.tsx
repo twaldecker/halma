@@ -11,35 +11,36 @@ interface GameState {
   color: string;
   j: number;
   i: number;
+  dame: boolean;
   sel: boolean;
 }
 
 const initialGame2p: GameState[] = [
-  { id: 1, color: "#FF9800", j: 0, i: 1, sel: false },
-  { id: 2, color: "#FF9800", j: 0, i: 3, sel: false },
-  { id: 3, color: "#FF9800", j: 0, i: 5, sel: false },
-  { id: 4, color: "#FF9800", j: 0, i: 7, sel: false },
-  { id: 5, color: "#FF9800", j: 1, i: 0, sel: false },
-  { id: 6, color: "#FF9800", j: 1, i: 2, sel: false },
-  { id: 7, color: "#FF9800", j: 1, i: 4, sel: false },
-  { id: 8, color: "#FF9800", j: 1, i: 6, sel: false },
-  { id: 9, color: "#FF9800", j: 2, i: 1, sel: false },
-  { id: 10, color: "#FF9800", j: 2, i: 3, sel: false },
-  { id: 11, color: "#FF9800", j: 2, i: 5, sel: false },
-  { id: 12, color: "#FF9800", j: 2, i: 7, sel: false },
+  { id: 1, color: "#FF9800", j: 0, i: 1, dame: false, sel: false },
+  { id: 2, color: "#FF9800", j: 0, i: 3, dame: false, sel: false },
+  { id: 3, color: "#FF9800", j: 0, i: 5, dame: false, sel: false },
+  { id: 4, color: "#FF9800", j: 0, i: 7, dame: false, sel: false },
+  { id: 5, color: "#FF9800", j: 1, i: 0, dame: false, sel: false },
+  { id: 6, color: "#FF9800", j: 1, i: 2, dame: false, sel: false },
+  { id: 7, color: "#FF9800", j: 1, i: 4, dame: false, sel: false },
+  { id: 8, color: "#FF9800", j: 1, i: 6, dame: false, sel: false },
+  { id: 9, color: "#FF9800", j: 2, i: 1, dame: false, sel: false },
+  { id: 10, color: "#FF9800", j: 2, i: 3, dame: false, sel: false },
+  { id: 11, color: "#FF9800", j: 2, i: 5, dame: false, sel: false },
+  { id: 12, color: "#FF9800", j: 2, i: 7, dame: false, sel: false },
 
-  { id: 13, color: "#00BCD4", j: 5, i: 0, sel: false },
-  { id: 14, color: "#00BCD4", j: 5, i: 2, sel: false },
-  { id: 15, color: "#00BCD4", j: 5, i: 4, sel: false },
-  { id: 16, color: "#00BCD4", j: 5, i: 6, sel: false },
-  { id: 17, color: "#00BCD4", j: 6, i: 1, sel: false },
-  { id: 18, color: "#00BCD4", j: 6, i: 3, sel: false },
-  { id: 19, color: "#00BCD4", j: 6, i: 5, sel: false },
-  { id: 20, color: "#00BCD4", j: 6, i: 7, sel: false },
-  { id: 21, color: "#00BCD4", j: 7, i: 0, sel: false },
-  { id: 22, color: "#00BCD4", j: 7, i: 2, sel: false },
-  { id: 23, color: "#00BCD4", j: 7, i: 4, sel: false },
-  { id: 24, color: "#00BCD4", j: 7, i: 6, sel: false },
+  { id: 13, color: "#00BCD4", j: 5, i: 0, dame: false, sel: false },
+  { id: 14, color: "#00BCD4", j: 5, i: 2, dame: false, sel: false },
+  { id: 15, color: "#00BCD4", j: 5, i: 4, dame: false, sel: false },
+  { id: 16, color: "#00BCD4", j: 5, i: 6, dame: false, sel: false },
+  { id: 17, color: "#00BCD4", j: 6, i: 1, dame: false, sel: false },
+  { id: 18, color: "#00BCD4", j: 6, i: 3, dame: false, sel: false },
+  { id: 19, color: "#00BCD4", j: 6, i: 5, dame: false, sel: false },
+  { id: 20, color: "#00BCD4", j: 6, i: 7, dame: false, sel: false },
+  { id: 21, color: "#00BCD4", j: 7, i: 0, dame: false, sel: false },
+  { id: 22, color: "#00BCD4", j: 7, i: 2, dame: false, sel: false },
+  { id: 23, color: "#00BCD4", j: 7, i: 4, dame: false, sel: false },
+  { id: 24, color: "#00BCD4", j: 7, i: 6, dame: false, sel: false },
 ];
 
 const base = 40
@@ -109,6 +110,7 @@ function Pin({ pin }: { pin: GameState }) {
         cy="0"
         onClick={pinClick}
       />
+      {pin.dame? <circle r="4" fill="none" stroke="#000" onClick={pinClick}/>:""}
     </motion.g>
   );
 }
@@ -121,13 +123,55 @@ function Rect({i,j}: {i: number, j: number}) {
     console.log("click i,j:"+[i,j])
     e.stopPropagation();
     let pin = game.find(s => s.sel);
+    let newGame = game;
+
     if (pin) {
-      setGame(
-        game.map((item, key) => {
-          if (item.sel) return { ...item, i, j } as GameState;
-          return item;
-        })
-      );
+
+      if(j%2 != i%2) { // only black fields
+
+        const idiff= i-pin.i
+        const jdiff= j-pin.j
+
+        if(Math.abs(idiff) === Math.abs(jdiff)) { // darf nur schräg laufen
+
+          const ci = i => i + (idiff/Math.abs(idiff))
+          const cj = j => j + (jdiff/Math.abs(jdiff))
+          let ir = ci(pin.i)
+          let jr = cj(pin.j)
+
+          // finde übersprungene
+          while (jr != j && ir != i) {
+            console.log(`ir: ${ir} jr: ${jr}`)
+
+            let res = game.find(m => m.i == ir && m.j == jr)
+
+            ir = ci(ir)
+            jr = cj(jr)
+            if(res) {
+              // wenn übersprungene, muss im nächsten feld gelandet werden
+              // nur andere farbe schlagen
+              //
+              if(i === ir && j === jr && pin.color !== res.color && ((Math.abs(idiff)===2 && Math.abs(jdiff)===2) || pin.dame) ) {
+                // lösche den übersprungenen
+                newGame = game.filter(m => !(m.i == (res!).i && m.j == (res!).j))
+              } else {
+                return
+              }
+            }
+          }
+
+          // setze neue position
+          setGame(
+            newGame.map(item => {
+              if (item.sel) return {
+                ...item, i, j,
+                dame: (((item.id > 12 && j == 0) || (item.id <= 12 && j == 7)) && !item.dame)? true: item.dame
+              } as GameState;
+              return item;
+            })
+          );
+        }
+      }
     }
   };
   return (
