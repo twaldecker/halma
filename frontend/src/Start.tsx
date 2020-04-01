@@ -12,10 +12,11 @@ import {
   makeStyles,
   Theme,
   TextField,
+  Grid,
+  Container,
+  FormControl,
 } from "@material-ui/core";
-import SwipeableViews from "react-swipeable-views";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import clsx from "clsx";
 
 const games = [
   {
@@ -42,20 +43,11 @@ const games = [
 ];
 
 const useStyles = makeStyles((theme: Theme) => ({
-  main: {
-    position: 'fixed',
-    maxWidth: 500,
-    left: 0,
-    right: 0,
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    padding: `0 16px 16px 16px`,
-    margin: `0 auto`,
+  gameTitle: {
+    marginBottom: 5,
   },
-  image: {
-    flexShrink: 1,
-    maxHeight: 300,
+  inactive: {
+    opacity: 0.1,
   }
 }));
 
@@ -66,81 +58,57 @@ function Start() {
   const theme = useTheme();
   const classes = useStyles();
 
-  const startButton = () => {
+  const startButton = (game?) => {
     if (gameId) {
       history.push(gameId);
     } else {
-      history.push(games[game].url + "/" + generate().dashed);
+      history.push(game.url + "/" + generate().dashed);
     }
   };
 
   return (
-    <div className={classes.main}>
+    <Container maxWidth="sm">
         <h1>Brettspiele online</h1>
         <p>
           Spiele Brettspiele, zum Beispiel Halma jetzt online mit deinen Freunden.
           Erstelle ein neues Spiel und teile den Link, damit deine Freunde beitreten können.
         </p>
-        <SwipeableViews index={game} onChangeIndex={i => setGame(i)}>
-          {games.map((game, i) => (
-            <div key={i} style={{display: 'flex', flexDirection: 'column'}}>
-              <h2>{game.name}</h2>
-              <img src={game.img} alt={game.name + "preview"} className={classes.image} />
-            </div>
-          ))}
-        </SwipeableViews>
-        <MobileStepper
-          steps={games.length}
-          position="static"
-          variant="text"
-          activeStep={game}
-          nextButton={
-            <Button
-              size="small"
-              onClick={_ => setGame(game + 1)}
-              disabled={game === games.length - 1}
-            >
-              Next
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              onClick={_ => setGame(game - 1)}
-              disabled={game === 0}
-            >
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-              Back
-            </Button>
-          }
-        />
-
-        <TextField
-          type="text"
-          name="room"
-          variant="filled"
-          size="small"
-          value={gameId}
-          placeholder="Spiel ID"
-          onChange={x => setGameId(x.target.value)}
-        />
+        <h2>Spiel beitreten</h2>
+        <FormControl fullWidth>
+          <TextField
+            type="text"
+            name="room"
+            variant="filled"
+            size="small"
+            value={gameId}
+            placeholder="Spiel ID"
+            onChange={x => setGameId(x.target.value)}
+          />
+        </FormControl>
         <p>
           Bei einem neuen Spiel können Sie das Feld leer lassen. Möchten Sie
           einem Spiel beitreten, geben Sie bitte die Spiel ID an.
         </p>
-        <Button variant="contained" color="primary" disabled={!games[game].active && !gameId } onClick={e => startButton()}>
-          {gameId ? "Spiel beitreten" : !games[game].active? "Bald verfügbar": "neues Spiel erstellen"}
+        <Button variant="contained" color="primary" disabled={!gameId } onClick={e => startButton()}>
+          {gameId ? "Spiel beitreten" : "Spiel ID oben eintippen"}
         </Button>
-      </div>
+
+        <h2>Neues Spiel</h2>
+
+        <Grid container spacing={3}>
+          {games.map((game, i) => (
+            <Grid item xs={6} sm={3} onClick={_ => {if(game.active) startButton(game)}}>
+              <h2 className={classes.gameTitle}>{game.name}</h2>
+              <img src={game.img} alt={game.name + "preview"} className={clsx(!game.active?classes.inactive:false)}/>
+              {!game.active? <div style={{position: "relative", top: -100, left: 0}}>bald verfügbar</div>:""}
+            </Grid>
+          ))}
+
+
+        </Grid>
+
+
+      </Container>
   );
 }
 
