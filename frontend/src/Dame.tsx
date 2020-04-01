@@ -23,7 +23,6 @@ const initialGame2p: GameState[] = [
   { id: 6, color: "#FF9800", j: 0, i: 5, sel: false },
   { id: 7, color: "#FF9800", j: 0, i: 6, sel: false },
   { id: 8, color: "#FF9800", j: 0, i: 7, sel: false },
-  { id: 9, color: "#FF9800", j: 0, i: 8, sel: false },
 
   { id: 10, color: "#00BCD4", j: 8, i: 0, sel: false },
   { id: 11, color: "#00BCD4", j: 8, i: 1, sel: false },
@@ -33,7 +32,6 @@ const initialGame2p: GameState[] = [
   { id: 15, color: "#00BCD4", j: 8, i: 5, sel: false },
   { id: 16, color: "#00BCD4", j: 8, i: 6, sel: false },
   { id: 17, color: "#00BCD4", j: 8, i: 7, sel: false },
-  { id: 18, color: "#00BCD4", j: 8, i: 8, sel: false },
 ];
 
 const base = 40
@@ -58,8 +56,8 @@ async function getInitialGameState(client, setGame) {
 
 function position(i: number, j: number) {
   return {
-    x: i*base,
-    y: j*base,
+    x: i*base+base/2,
+    y: j*base+ base/2,
   };
 }
 
