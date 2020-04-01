@@ -6,9 +6,7 @@ import muehle from "./assets/muehle.svg";
 import pachisi from "./assets/pachisi.svg";
 import dame from "./assets/dame.svg";
 import {
-  MobileStepper,
   Button,
-  useTheme,
   makeStyles,
   Theme,
   TextField,
@@ -29,17 +27,19 @@ const games = [
     img: muehle,
     url: 'muehle',
     active: true,
-  }, {
+  },
+  {
+    name: "Dame",
+    img: dame,
+    url: 'dame',
+    active: true,
+  },
+  {
     name: "Pachisi",
     img: pachisi,
     url: 'pachisi',
     active: false,
-  }, {
-    name: "Dame",
-    img: dame,
-    url: 'dame',
-    active: false,
-  }
+  },
 ];
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -54,8 +54,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 function Start() {
   const history = useHistory();
   const [gameId, setGameId] = useState("");
-  const [game, setGame] = useState(0);
-  const theme = useTheme();
   const classes = useStyles();
 
   const startButton = (game?) => {
@@ -103,11 +101,7 @@ function Start() {
               {!game.active? <div style={{position: "relative", top: -100, left: 0}}>bald verfügbar</div>:""}
             </Grid>
           ))}
-
-
         </Grid>
-
-
       </Container>
   );
 }
