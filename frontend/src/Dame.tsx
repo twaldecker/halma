@@ -9,31 +9,31 @@ import Link from "@material-ui/core/Link";
 interface GameState {
   id: number;
   color: string;
-  row: number;
+  j: number;
   i: number;
   sel: boolean;
 }
 
 const initialGame2p: GameState[] = [
-  { id: 1, color: "#FF9800", row: 7, i: 0, sel: false },
-  { id: 2, color: "#FF9800", row: 7, i: 1, sel: false },
-  { id: 3, color: "#FF9800", row: 7, i: 2, sel: false },
-  { id: 4, color: "#FF9800", row: 7, i: 3, sel: false },
-  { id: 5, color: "#FF9800", row: 7, i: 4, sel: false },
-  { id: 6, color: "#FF9800", row: 7, i: 5, sel: false },
-  { id: 7, color: "#FF9800", row: 7, i: 6, sel: false },
-  { id: 8, color: "#FF9800", row: 7, i: 7, sel: false },
-  { id: 9, color: "#FF9800", row: 7, i: 8, sel: false },
+  { id: 1, color: "#FF9800", j: 0, i: 0, sel: false },
+  { id: 2, color: "#FF9800", j: 0, i: 1, sel: false },
+  { id: 3, color: "#FF9800", j: 0, i: 2, sel: false },
+  { id: 4, color: "#FF9800", j: 0, i: 3, sel: false },
+  { id: 5, color: "#FF9800", j: 0, i: 4, sel: false },
+  { id: 6, color: "#FF9800", j: 0, i: 5, sel: false },
+  { id: 7, color: "#FF9800", j: 0, i: 6, sel: false },
+  { id: 8, color: "#FF9800", j: 0, i: 7, sel: false },
+  { id: 9, color: "#FF9800", j: 0, i: 8, sel: false },
 
-  { id: 10, color: "#00BCD4", row: 8, i: 0, sel: false },
-  { id: 11, color: "#00BCD4", row: 8, i: 1, sel: false },
-  { id: 12, color: "#00BCD4", row: 8, i: 2, sel: false },
-  { id: 13, color: "#00BCD4", row: 8, i: 3, sel: false },
-  { id: 14, color: "#00BCD4", row: 8, i: 4, sel: false },
-  { id: 15, color: "#00BCD4", row: 8, i: 5, sel: false },
-  { id: 16, color: "#00BCD4", row: 8, i: 6, sel: false },
-  { id: 17, color: "#00BCD4", row: 8, i: 7, sel: false },
-  { id: 18, color: "#00BCD4", row: 8, i: 8, sel: false },
+  { id: 10, color: "#00BCD4", j: 8, i: 0, sel: false },
+  { id: 11, color: "#00BCD4", j: 8, i: 1, sel: false },
+  { id: 12, color: "#00BCD4", j: 8, i: 2, sel: false },
+  { id: 13, color: "#00BCD4", j: 8, i: 3, sel: false },
+  { id: 14, color: "#00BCD4", j: 8, i: 4, sel: false },
+  { id: 15, color: "#00BCD4", j: 8, i: 5, sel: false },
+  { id: 16, color: "#00BCD4", j: 8, i: 6, sel: false },
+  { id: 17, color: "#00BCD4", j: 8, i: 7, sel: false },
+  { id: 18, color: "#00BCD4", j: 8, i: 8, sel: false },
 ];
 
 const base = 40
@@ -56,18 +56,18 @@ async function getInitialGameState(client, setGame) {
   }
 }
 
-function position(row: number, i: number) {
+function position(i: number, j: number) {
   return {
-    x: (row<7)? i * base: base*6/8*i,
-    y: (row<7) ? row * base: -40 + (row-7)*(base*6 + 80)
+    x: i*base,
+    y: j*base,
   };
 }
 
 function Pin({ pin }: { pin: GameState }) {
   const { game, setGame } = useContext(GameContext)!;
-  const { x, y } = position(pin.row, pin.i);
+  const { x, y } = position(pin.i, pin.j);
 
-  const currentCoordinates = n => n.row === pin.row && n.i === pin.i;
+  const currentCoordinates = n => n.j === pin.j && n.i === pin.i;
 
   const pinClick = e => {
     e.stopPropagation();
@@ -107,97 +107,40 @@ function Pin({ pin }: { pin: GameState }) {
   );
 }
 
-function Hole({ row, i, big }: { row: number; i: number; big?: boolean }) {
+
+function Rect({i,j}: {i: number, j: number}) {
   const { game, setGame } = useContext(GameContext)!;
-  const { x, y } = position(row, i);
 
   const holeClick = e => {
+    console.log("click i,j:"+[i,j])
     e.stopPropagation();
     let pin = game.find(s => s.sel);
     if (pin) {
       setGame(
         game.map((item, key) => {
-          if (item.sel) return { ...item, row, i } as GameState;
+          if (item.sel) return { ...item, i, j } as GameState;
           return item;
         })
       );
     }
   };
-
   return (
-    <>
-      <circle r="3" fill="#e5e5e5" cx={x} cy={y} />
-      <circle
-        r={big? 40 : 30}
-        style={{ fill: "#000", opacity: 0 }}
-        cx={x}
-        cy={y}
-        onClick={holeClick}
-      />
-    </>
-  );
+    <rect x={i*base} y={j*base} height={base} width={base} stroke="none" fill="#ccc" style={{opacity: (j%2 == i%2) ? 1:0}} onClick={holeClick}/>
+  )
 }
 
+
 function Spielfeld() {
+
+
   return (
     <>
       <rect x={0} y={0} height={8*base} width={8*base} stroke="#fff" fill="none"/>
       {[0,1,2,3,4,5,6,7].map(i =>
         {return [0,1,2,3,4,5,6,7].map(j =>
-          <rect x={i*base} y={j*base} height={base} width={base} stroke="none" fill={j%2 == i%2 ? `#ccc`: `none`} />
+          <Rect i={i} j={j} />
         )}
       )}
-    </>
-  );
-}
-
-function Holes() {
-  return (
-    <>
-      <Hole row={0} i={0} big={true}/>
-      <Hole row={0} i={3}  big={true}/>
-      <Hole row={0} i={6}  big={true}/>
-      <Hole row={1} i={1}  big={true}/>
-      <Hole row={1} i={3}  big={true}/>
-      <Hole row={1} i={5}  big={true}/>
-      <Hole row={2} i={2}  big={true}/>
-      <Hole row={2} i={3}  big={true}/>
-      <Hole row={2} i={4}  big={true}/>
-      <Hole row={3} i={0}  big={true}/>
-      <Hole row={3} i={1}  big={true}/>
-      <Hole row={3} i={2}  big={true}/>
-      <Hole row={3} i={4}  big={true}/>
-      <Hole row={3} i={5}  big={true}/>
-      <Hole row={3} i={6}  big={true}/>
-      <Hole row={4} i={2}  big={true}/>
-      <Hole row={4} i={3}  big={true}/>
-      <Hole row={4} i={4}  big={true}/>
-      <Hole row={5} i={1}  big={true}/>
-      <Hole row={5} i={3}  big={true}/>
-      <Hole row={5} i={5}  big={true}/>
-      <Hole row={6} i={0}  big={true}/>
-      <Hole row={6} i={3}  big={true}/>
-      <Hole row={6} i={6}  big={true}/>
-      <g className="startingPositions">
-        <Hole row={7} i={0} />
-        <Hole row={7} i={1} />
-        <Hole row={7} i={2} />
-        <Hole row={7} i={3} />
-        <Hole row={7} i={4} />
-        <Hole row={7} i={5} />
-        <Hole row={7} i={6} />
-        <Hole row={7} i={7} />
-        <Hole row={7} i={8} />
-        <Hole row={8} i={0} />
-        <Hole row={8} i={1} />
-        <Hole row={8} i={2} />
-        <Hole row={8} i={3} />
-        <Hole row={8} i={4} />
-        <Hole row={8} i={5} />
-        <Hole row={8} i={6} />
-        <Hole row={8} i={7} />
-        <Hole row={8} i={8} />
-      </g>
     </>
   );
 }
@@ -300,8 +243,7 @@ function App() {
         <svg viewBox={`-10 -10 ${8*base+20} ${8*base+20}`} onClick={unselect}>
           <Spielfeld />
 
-          {/* <Holes />
-          <Pins /> */}
+          <Pins />
         </svg>
         <button className="reset-button" onClick={e => newGame(initialGame2p)}>Neues Spiel</button>
       </div>
