@@ -95,7 +95,7 @@ function Start() {
 
         <Grid container spacing={3}>
           {games.map((game, i) => (
-            <Grid item xs={6} sm={3} onClick={_ => {if(game.active) startButton(game)}}>
+            <Grid key={i} item xs={6} sm={3} onClick={_ => {if(game.active) startButton(game)}}>
               <h2 className={classes.gameTitle}>{game.name}</h2>
               <img src={game.img} alt={game.name + "preview"} className={clsx(!game.active?classes.inactive:false)}/>
               {!game.active? <div style={{position: "relative", top: -100, left: 0}}>bald verfügbar</div>:""}

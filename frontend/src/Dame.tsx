@@ -3,8 +3,10 @@ import "./Halma.css";
 import connection from "./feathers";
 import { motion } from "framer-motion";
 import whatsappImage from "./assets/whatsapp.png"
-
+import d from "debug"
 import Link from "@material-ui/core/Link";
+
+const debug = d("dame")
 
 interface GameState {
   id: number;
@@ -51,15 +53,22 @@ const GameContext = React.createContext<{
 } | null>(null);
 
 async function getInitialGameState(client, setGame) {
+  debug("Get initial game State.")
   if (client) {
     var game = await client.service("game").find();
 
     if (game.data.length != 0) {
+      debug("Game state found.")
       let gameData = game.data[0].data.game;
+      debug("gameData:")
+      debug(gameData)
       setGame(gameData);
     } else {
+      debug("No game data available. Setting initial Game.")
       setGame(initialGame2p);
     }
+  } else {
+    debug("No client to find game State.")
   }
 }
 
@@ -188,7 +197,7 @@ function Spielfeld() {
       <rect x={0} y={0} height={8*base} width={8*base} stroke="#fff" fill="none"/>
       {[0,1,2,3,4,5,6,7].map(i =>
         {return [0,1,2,3,4,5,6,7].map(j =>
-          <Rect i={i} j={j} />
+          <Rect i={i} j={j} key={j} />
         )}
       )}
     </>
