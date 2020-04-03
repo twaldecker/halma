@@ -188,10 +188,7 @@ function Rect({i,j}: {i: number, j: number}) {
   )
 }
 
-
 function Spielfeld() {
-
-
   return (
     <>
       <rect x={0} y={0} height={8*base} width={8*base} stroke="#fff" fill="none"/>
@@ -216,7 +213,7 @@ function Pins() {
   );
 }
 
-function App() {
+function Dame() {
   const channel = new URL(window.location.href).pathname;
 
   const [game, setGame] = useState(initialGame2p);
@@ -225,6 +222,7 @@ function App() {
   const [anchorEl, setAnchorEl] = useState<any>(null);
 
   useEffect(() => {
+    debug("Connecting")
     let { client, socket } = connection();
     setClient(client);
 
@@ -235,9 +233,11 @@ function App() {
     });
 
     client.service("game").on("updated", result => {
+      debug("Got a Game update from server.")
       setGame(result.data.game);
     });
     return () => {
+      debug("Closing connection.")
       socket.close();
     };
   }, []);
@@ -310,4 +310,4 @@ function App() {
   );
 }
 
-export default App;
+export default Dame;
