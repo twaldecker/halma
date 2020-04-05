@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Halma.css";
-import connection from "./feathers";
+import io from "socket.io-client";
 import { motion } from "framer-motion";
 import whatsappImage from "./assets/whatsapp.png"
-
+import d from "debug"
 import Link from "@material-ui/core/Link";
+
+const debug = d("game:pachisi")
+
 
 interface GameState {
   id: number;
@@ -318,41 +321,39 @@ function App() {
 
   const [game, setGame] = useState(initialGame2p);
   const [connectionCount, setConnectionCount] = useState(0);
-  const [client, setClient] = useState<any>();
+  const [socket, setSocket] = useState<any>();
   const [anchorEl, setAnchorEl] = useState<any>(null);
 
   useEffect(() => {
-    let { client, socket } = connection();
-    setClient(client);
+    let socketServer = "localhost:3030"
+    debug("Connecting to: "+ socketServer)
+    let socket = io(socketServer);
+    setSocket(socket);
 
-    getInitialGameState(client, setGame);
+    socket.on("game", (game) => {
+      debug("Got a Game update from server.")
+      if(game)  {
+        setGame(game);
+      } else {
+        debug("Game was null!")
+        socket.emit("game", initialGame2p)
+      }
+    })
 
-    client.service("connection").on("created", result => {
-      setConnectionCount(result.data.connections);
-    });
+    debug("joining channel: " +channel)
+    socket.emit("join", channel)
 
-    client.service("game").on("updated", result => {
-      setGame(result.data.game);
-    });
     return () => {
+      debug("Closing connection.")
       socket.close();
     };
   }, []);
 
   const setFeatherGame = (game: GameState[]) => {
     setGame(game);
-    if (client) {
-      const gameService = client.service("game");
-
-      gameService.find().then(result => {
-        if (result.data.length == 0) {
-          gameService.create({
-            data: { channel, game }
-          });
-        } else {
-          gameService.update(0, { data: { channel, game } });
-        }
-      });
+    if (socket) {
+      debug("emit game")
+      socket.emit("game", game);
     }
   };
 
