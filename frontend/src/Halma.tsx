@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Halma.css";
-import connection from './feathers';
+import io from 'socket.io-client';
 import { motion } from "framer-motion"
 import whatsappImage from "./assets/whatsapp.png"
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Link } from "@material-ui/core";
+import d from "debug"
+
+const debug = d("game:halma")
 
 interface GameState {
   id: number
@@ -286,20 +289,6 @@ function height(length: number) {
   return Math.sqrt(length ** 2 - (length / 2) ** 2);
 }
 
-async function getInitialGameState(client, setGame) {
-  if(client) {
-    var game = await client.service('game').find()
-
-    if (game.data.length !== 0) {
-      let gameData = game.data[0].data.game
-      setGame(gameData)
-    }
-    else {
-      setGame(initialGame2p);
-    }
-  }
-}
-
 function position(row: number, i: number) {
   return {
     x: ((startx+i*smallTriangle)+base/2-smallTriangle/2*(Game[row]-1)),
@@ -423,41 +412,39 @@ function App() {
 
   const [game, setGame] = useState(initialGame2p)
   const [connectionCount, setConnectionCount] = useState(0)
-  const [client, setClient] = useState<any>()
+  const [socket, setSocket] = useState<any>()
   const [anchorEl, setAnchorEl] = useState<any>(null)
 
   useEffect(() => {
-    let {client, socket} = connection()
-    setClient(client)
+    let socketServer = "localhost:3030"
+    debug("Connecting to: "+ socketServer)
+    let socket = io(socketServer);
+    setSocket(socket);
 
-    getInitialGameState(client, setGame)
-
-    client.service('connection').on('created', result => {
-      setConnectionCount(result.data.connections)
+    socket.on("game", (game) => {
+      debug("Got a Game update from server.")
+      if(game)  {
+        setGame(game);
+      } else {
+        debug("Game was null!")
+        socket.emit("game", initialGame2p)
+      }
     })
 
-    client.service('game').on('updated', result => {
-      setGame(result.data.game)
-    })
+    debug("joining channel: " +channel)
+    socket.emit("join", channel)
+
     return () => {
-      socket.close()
-    }
-
-  }, [])
+      debug("Closing connection.")
+      socket.close();
+    };
+  }, []);
 
   const setFeatherGame = (game: GameState[]) => {
     setGame(game)
-    if(client){
-      const gameService = client.service('game')
-
-      gameService.find().then(result => {
-        if (result.data.length === 0) {
-          gameService.create({
-            data: { channel, game }})
-        } else {
-          gameService.update(0, {data: {channel, game}})
-        }
-      });
+    if(socket){
+      debug("emit game")
+      socket.emit("game", game)
     }
   }
 
