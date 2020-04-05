@@ -431,6 +431,8 @@ function App() {
       }
     })
 
+    socket.on("connections", setConnectionCount)
+
     debug("joining channel: " +channel)
     socket.emit("join", channel)
 
@@ -439,6 +441,7 @@ function App() {
       socket.close();
     };
   }, []);
+
 
   const setFeatherGame = (game: GameState[]) => {
     setGame(game)

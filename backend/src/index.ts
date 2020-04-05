@@ -36,6 +36,8 @@ io.on('connection', (socket) => {
     socket.join(room, (err) => {
       debug("sending gameData after joining the room.")
       io.to(room).emit("game", gameData.get(room))
+      debug("connected clients: " +io.sockets.adapter.rooms[room].length)
+      io.to(room).emit("connections", io.sockets.adapter.rooms[room].length)
     })
   })
   socket.on("game", data => {
@@ -45,6 +47,12 @@ io.on('connection', (socket) => {
   })
   socket.on("disconnect", data => {
     debug("disconnect from room: " + room)
+    let rooms = io.sockets.adapter.rooms
+    if(rooms[room]) {
+      debug("connected clients: " +rooms[room].length)
+      io.to(room).emit("connections", rooms[room].length)
+    }
+
   })
 })
 

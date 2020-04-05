@@ -217,6 +217,8 @@ function Dame() {
       }
     })
 
+    socket.on("connections", setConnectionCount)
+
     debug("joining channel: " +channel)
     socket.emit("join", channel)
 
