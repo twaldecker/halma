@@ -1,6 +1,6 @@
 # A Collection of Boardgames
 
-Based on a Feathers Backend and a React frontend.
+Based on a Express Backend with Socket.IO and a React frontend.
 
 ![halma board game preview](./frontend/public/logo192.png)
 
@@ -8,11 +8,11 @@ Based on a Feathers Backend and a React frontend.
 
 * Halma
 * Mühle
+* Dame
 
 Work in progress
 
 * Pachisi
-* Dame
 
 ## Development
 
