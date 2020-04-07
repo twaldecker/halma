@@ -5,6 +5,8 @@ import halma6 from "./assets/halma6.svg";
 import muehle from "./assets/muehle.svg";
 import pachisi from "./assets/pachisi.svg";
 import dame from "./assets/dame.svg";
+import wunderwald from "./assets/wunderwald.svg";
+
 import {
   Button,
   makeStyles,
@@ -66,7 +68,8 @@ function Start() {
 
   return (
     <Container maxWidth="sm">
-        <h1>Brettspiele online</h1>
+        <h1>Wunderwald Games</h1>
+        <img src={wunderwald} alt="Wunderwald Logo" width="100"/>
         <p>
           Spiele Brettspiele, zum Beispiel Halma jetzt online mit deinen Freunden.
           Erstelle ein neues Spiel und teile den Link, damit deine Freunde beitreten können.
