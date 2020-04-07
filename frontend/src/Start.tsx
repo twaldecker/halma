@@ -17,6 +17,7 @@ import {
   FormControl,
 } from "@material-ui/core";
 import clsx from "clsx";
+import Ribbon from "./Ribbon";
 
 const games = [
   {
@@ -68,7 +69,7 @@ function Start() {
 
   return (
     <Container maxWidth="sm">
-        <h1>Wunderwald Games</h1>
+        <Ribbon><h1>Wunderwald Games</h1></Ribbon>
         <img src={wunderwald} alt="Wunderwald Logo" width="100"/>
         <p>
           Spiele Brettspiele, zum Beispiel Halma jetzt online mit deinen Freunden.
