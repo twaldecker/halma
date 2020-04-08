@@ -4,7 +4,7 @@ import "./Ribbon.css"
 function Ribbon(props) {
 
   return (
-  <div className="container one">
+  <div className="ribbon-container one">
 
   <div className="bk l">
     <div className="arrow top"></div>

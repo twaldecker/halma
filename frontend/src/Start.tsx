@@ -51,6 +51,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   inactive: {
     opacity: 0.1,
+  },
+  logo: {
+    width: 200,
+    display: "block",
+    margin: "0 auto",
   }
 }));
 
@@ -70,7 +75,7 @@ function Start() {
   return (
     <Container maxWidth="sm">
         <Ribbon><h1>Wunderwald Games</h1></Ribbon>
-        <img src={wunderwald} alt="Wunderwald Logo" width="100"/>
+        <img src={wunderwald} alt="Wunderwald Logo" className={classes.logo}/>
         <p>
           Spiele Brettspiele, zum Beispiel Halma jetzt online mit deinen Freunden.
           Erstelle ein neues Spiel und teile den Link, damit deine Freunde beitreten können.

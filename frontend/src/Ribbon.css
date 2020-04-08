@@ -1,19 +1,17 @@
-.container * {
+.ribbon-container * {
   box-sizing: border-box;
 }
-.container {
-  width: 80%;
-  max-width: 1000px;
+.ribbon-container {
   height: 80px;
-  margin: 40px auto;
+  margin: 40px 0 0 0;
   position: relative;
 }
 
-.one > div {
+.ribbon-container.one > div {
   height: 50px;
 }
 
-.main {
+.ribbon-container .main {
   background: #0fadc0;
   position: relative;
   display: block;
@@ -24,29 +22,33 @@
   margin-left: -45%;
   z-index: 10;
 }
+.ribbon-container .main h1 {
+  margin: 0;
+  text-align: center;
+  padding: 0;
+}
 
-.main > div {
+.ribbon-container .main > div {
   border: 1px dashed #fff;
   border-color: rgba(255, 255, 255, 0.5);
   height: 40px;
 }
 
-.bk {
+.ribbon-container .bk {
  background: #1199a9;
  position: absolute;
  width: 8%;
  top: 12px;
 }
 
-.bk.l {
+.ribbon-container .bk.l {
  left: 0;
 }
-
-.bk.r {
+.ribbon-container .bk.r {
  right: 0;
 }
 
-.skew {
+.ribbon-container .skew {
   position: absolute;
   background: #0c7582;
   width: 3%;
@@ -54,25 +56,25 @@
   z-index: 5;
 }
 
-.skew.l {
+.ribbon-container .skew.l {
   left: 5%;
   transform: skew(00deg,20deg);
 }
 
-.skew.r {
+.ribbon-container .skew.r {
   right: 5%;
   transform: skew(00deg,-20deg);
 }
 
-.bk.l > div {
+.ribbon-container .bk.l > div {
   left: -30px;
 }
 
-.bk.r > div {
+.ribbon-container .bk.r > div {
   right: -30px;
 }
 
-.arrow {
+.ribbon-container .arrow {
   height: 25px !important;
   position: absolute;
   z-index: 2;
@@ -80,28 +82,28 @@
 	height: 0;
 }
 
-.arrow.top {
+.ribbon-container .arrow.top {
   top: 0px;
   border-top: 0px solid transparent;
 	border-bottom: 25px solid transparent;
 	border-right: 30px solid #1199a9;
 }
 
-.arrow.bottom {
+.ribbon-container .arrow.bottom {
   top: 25px;
   border-top: 25px solid transparent;
 	border-bottom:0px solid transparent;
 	border-right: 30px solid #1199a9;
 }
 
-.r .bottom {
+.ribbon-container .r .bottom {
   border-top: 25px solid transparent;
 	border-bottom: 0px solid transparent;
 	border-left: 30px solid #1199a9;
   border-right: none;
 }
 
-.r .top {
+.ribbon-container .r .top {
   border-bottom: 25px solid transparent;
 	border-top: 0px solid transparent;
 	border-left: 30px solid #1199a9;
@@ -109,35 +111,35 @@
 }
 
 @media all and (max-width: 1020px) {
-  .skew.l {
+  .ribbon-container .skew.l {
     left: 5%;
     transform: skew(00deg,25deg);
   }
 
-  .skew.r {
+  .ribbon-container .skew.r {
     right: 5%;
     transform: skew(00deg,-25deg);
   }
 }
 
 @media all and (max-width: 680px) {
-  .skew.l {
+  .ribbon-container .skew.l {
     left: 5%;
     transform: skew(00deg,30deg);
   }
 
-  .skew.r {
+  .ribbon-container .skew.r {
     right: 5%;
     transform: skew(00deg,-30deg);
   }
 }
 
 @media all and (max-width: 460px) {
-  .skew.l {
+  .ribbon-container .skew.l {
     left: 5%;
     transform: skew(00deg,40deg);
   }
-  .skew.r {
+  .ribbon-container .skew.r {
     right: 5%;
     transform: skew(00deg,-40deg);
   }
