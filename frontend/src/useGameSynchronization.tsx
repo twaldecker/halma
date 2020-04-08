@@ -11,7 +11,7 @@ function useGameSynchronization(channel: string, initialGame: any) {
   const [socket, setSocket] = useState<any>();
 
   useEffect(() => {
-    let socketServer = "localhost:3030"
+    let socketServer = ""
     debug("Connecting to: "+ socketServer)
     let socket = io(socketServer);
     setSocket(socket);
