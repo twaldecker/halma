@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./Halma.css";
-import io from "socket.io-client";
+import React, { useState, useContext } from "react";
 import { motion } from "framer-motion";
 import whatsappImage from "./assets/whatsapp.png"
 import d from "debug"
 
 import Link from "@material-ui/core/Link";
+import useGameSynchronization from "./useGameSynchronization";
 
 const debug = d("game:muehle")
 
@@ -236,61 +235,23 @@ function Pins() {
 
 function App() {
   const channel = new URL(window.location.href).pathname;
-
-  const [game, setGame] = useState(initialGame2p);
-  const [connectionCount, setConnectionCount] = useState(0);
-  const [socket, setSocket] = useState<any>();
+  const {game, setGame, connectionCount} = useGameSynchronization(channel, initialGame2p);
   const [anchorEl, setAnchorEl] = useState<any>(null);
-
-  useEffect(() => {
-    let socketServer = "localhost:3030"
-    debug("Connecting to: "+ socketServer)
-    let socket = io(socketServer);
-    setSocket(socket);
-
-    socket.on("game", (game) => {
-      debug("Got a Game update from server.")
-      if(game)  {
-        setGame(game);
-      } else {
-        debug("Game was null!")
-        socket.emit("game", initialGame2p)
-      }
-    })
-
-    socket.on("connections", setConnectionCount)
-
-    debug("joining channel: " +channel)
-    socket.emit("join", channel)
-
-    return () => {
-      debug("Closing connection.")
-      socket.close();
-    };
-  }, []);
-
-  const setFeatherGame = (game: GameState[]) => {
-    setGame(game);
-    if (socket) {
-      debug("emit game")
-      socket.emit("game", game);
-    }
-  };
 
   const unselect = _ => {
     let newGame = game.map(s => ({ ...s, sel: false }));
-    setFeatherGame(newGame);
+    setGame(newGame);
   };
 
   const newGame = state => {
     if (window.confirm("Neues spiel?")) {
-      setFeatherGame(state);
+      setGame(state);
     }
     setAnchorEl(null);
   };
 
   return (
-    <GameContext.Provider value={{ game, setGame: setFeatherGame }}>
+    <GameContext.Provider value={{ game, setGame: setGame }}>
       <div className="game">
         <div className="topleft">
           <h1>Mühle</h1>
