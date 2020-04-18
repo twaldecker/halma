@@ -6,6 +6,7 @@ import d from "debug"
 import express from 'express';
 import {Server} from 'http';
 import socket from 'socket.io';
+import track, {actions} from './tracker'
 
 const debug = d("server")
 const app = express();
@@ -33,6 +34,8 @@ io.on('connection', (socket) => {
   socket.on('join', (data) => {
     room = data
     debug("join: "+room)
+    track(socket.id, actions.connect, room)
+
     socket.join(room, (err) => {
       debug("sending gameData after joining the room.")
       io.to(room).emit("game", gameData.get(room))
@@ -42,11 +45,13 @@ io.on('connection', (socket) => {
   })
   socket.on("game", data => {
     debug("new game state in room: " +room)
+    track(socket.id, actions.update, room)
     gameData.set(room, data)
     socket.to(room).emit("game", gameData.get(room))
   })
   socket.on("disconnect", data => {
     debug("disconnect from room: " + room)
+    track(socket.id, actions.disconnect, room)
     let rooms = io.sockets.adapter.rooms
     if(rooms[room]) {
       debug("connected clients: " +rooms[room].length)
