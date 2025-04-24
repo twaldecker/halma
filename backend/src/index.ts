@@ -5,13 +5,13 @@ import history from 'connect-history-api-fallback';
 import d from "debug"
 import express from 'express';
 import {Server} from 'http';
-import socket from 'socket.io';
+import {Server as SocketServer} from 'socket.io';
 import track, {actions} from './tracker'
 
 const debug = d("server")
 const app = express();
 const server = new Server(app);
-const io = socket(server)
+const io = new SocketServer(server)
 
 server.listen(3030)
 
@@ -31,17 +31,17 @@ io.on('connection', (socket) => {
   debug("new connection")
   let room: any = null
 
-  socket.on('join', (data) => {
+  socket.on('join', async (data) => {
     room = data
     debug("join: "+room)
     track(socket.id, actions.connect, room)
 
-    socket.join(room, (err) => {
-      debug("sending gameData after joining the room.")
-      io.to(room).emit("game", gameData.get(room))
-      debug("connected clients: " +io.sockets.adapter.rooms[room].length)
-      io.to(room).emit("connections", io.sockets.adapter.rooms[room].length)
-    })
+    await socket.join(room);
+    debug("sending gameData after joining the room.")
+    io.to(room).emit("game", gameData.get(room))
+    let num = io.sockets.adapter.rooms.get(room)?.size;
+    debug("connected clients: " + num)
+    io.to(room).emit("connections", num)
   })
   socket.on("game", data => {
     debug("new game state in room: " +room)
@@ -53,9 +53,9 @@ io.on('connection', (socket) => {
     debug("disconnect from room: " + room)
     track(socket.id, actions.disconnect, room)
     let rooms = io.sockets.adapter.rooms
-    if(rooms[room]) {
-      debug("connected clients: " +rooms[room].length)
-      io.to(room).emit("connections", rooms[room].length)
+    if(rooms.get(room)) {
+      debug("connected clients: " +rooms.get(room)?.size)
+      io.to(room).emit("connections", rooms.get(room)?.size)
     }
 
   })

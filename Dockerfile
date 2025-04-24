@@ -1,27 +1,23 @@
-FROM node:lts as buildfrontend
-
+FROM node:22 as buildfrontend
 WORKDIR /home/node/frontend
-COPY frontend/package.json frontend/yarn.lock ./
-RUN yarn install
-COPY frontend ./
-RUN yarn build
+RUN corepack enable
+COPY frontend .
+RUN yarn rebuild && yarn build
 
-FROM node:lts-alpine
+FROM node:22 as buildbackend
+WORKDIR /home/node/backend
+RUN corepack enable
+COPY backend .
+RUN yarn rebuild && yarn build
 
-WORKDIR /usr/src/app/backend
-
-COPY backend/package.json backend/yarn.lock ./
-
-RUN yarn install
-
+FROM node:22-alpine
 WORKDIR /usr/src/app
-
+RUN corepack enable
+COPY backend backend
 COPY --from=buildfrontend /home/node/frontend/build frontend/build
 
 WORKDIR /usr/src/app/backend
-
-COPY backend ./
-
+RUN yarn rebuild && yarn build
 EXPOSE 3030
 
 CMD ["yarn", "run", "start"]
