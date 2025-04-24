@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Halma from './Halma';
-import Muehle from './Muehle';
-import Pachisi from './Pachisi';
-import Dame from './Dame';
-import * as serviceWorker from './serviceWorker';
-import Start from './Start';
+import Halma from './Halma.js';
+import Muehle from './Muehle.js';
+import Pachisi from './Pachisi.js';
+import Dame from './Dame.js';
+import * as serviceWorker from './serviceWorker.js';
+import Start from './Start.js';
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import theme from './theme'
+import theme from './theme.js';
 
 ReactDOM.render(
   <React.StrictMode>

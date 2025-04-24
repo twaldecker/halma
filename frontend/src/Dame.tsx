@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import whatsappImage from "./assets/whatsapp.png"
 import d from "debug"
 import Link from "@material-ui/core/Link";
-import useGameSynchronization from "./useGameSynchronization";
+import useGameSynchronization from "./useGameSynchronization.jsx";
 
 const debug = d("game:dame")
 

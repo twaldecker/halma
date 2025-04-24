@@ -10,10 +10,6 @@ Based on a Express Backend with Socket.IO and a React frontend.
 * Mühle
 * Dame
 
-Work in progress
-
-* Pachisi
-
 ## Development
 
 ```

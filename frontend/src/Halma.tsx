@@ -7,7 +7,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Link } from "@material-ui/core";
 import d from "debug"
-import useGameSynchronization from "./useGameSynchronization";
+import useGameSynchronization from "./useGameSynchronization.jsx";
 
 const debug = d("game:halma")
 
