@@ -46,5 +46,6 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.4.1",
     "vite": "^6.3.3"
-  }
+  },
+  "packageManager": "yarn@4.9.1"
 }
