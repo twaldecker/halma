@@ -20,4 +20,4 @@ WORKDIR /usr/src/app/backend
 RUN yarn rebuild && yarn build
 EXPOSE 3030
 
-CMD ["yarn", "run", "start"]
+ENTRYPOINT ["yarn", "run", "start"]
