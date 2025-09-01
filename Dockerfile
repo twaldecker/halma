@@ -1,16 +1,16 @@
-FROM node:22 as buildfrontend
+FROM docker.io/node:24 as buildfrontend
 WORKDIR /home/node/frontend
 RUN corepack enable
 COPY frontend .
 RUN yarn rebuild && yarn build
 
-FROM node:22 as buildbackend
+FROM docker.io/node:24 as buildbackend
 WORKDIR /home/node/backend
 RUN corepack enable
 COPY backend .
 RUN yarn rebuild && yarn build
 
-FROM node:22-alpine
+FROM docker.io/node:24-alpine
 WORKDIR /usr/src/app
 RUN corepack enable
 COPY backend backend

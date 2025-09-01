@@ -27,6 +27,6 @@ yarn dev
 ## Docker
 
 ```
-docker build -t halma .
+podman build -t halma .
 docker container run -p 9001:3030 -d halma
 ```
