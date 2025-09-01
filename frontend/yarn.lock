@@ -192,16 +192,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.0.0":
-  version: 7.0.0
-  resolution: "@babel/runtime@npm:7.0.0"
-  dependencies:
-    regenerator-runtime: "npm:^0.12.0"
-  checksum: 10c0/fbbdf86380a1cfa6ce32a743549f4e4c8b8eb06a18be5054441cc0f66e75a747ae43b042d8989f4657027e1be3b9a82069865ccc5080838f004abd1161093742
-  languageName: node
-  linkType: hard
-
-"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.2.0, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.4.4, @babel/runtime@npm:^7.5.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.4.4, @babel/runtime@npm:^7.5.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7":
   version: 7.28.3
   resolution: "@babel/runtime@npm:7.28.3"
   checksum: 10c0/b360f82c2c5114f2a062d4d143d7b4ec690094764853937110585a9497977aed66c102166d0e404766c274e02a50ffb8f6d77fef7251ecf3f607f0e03e6397bc
@@ -1797,7 +1788,6 @@ __metadata:
     react: "npm:^16.14.0"
     react-dom: "npm:^16.14.0"
     react-router-dom: "npm:^5.3.4"
-    react-swipeable-views: "npm:^0.13.9"
     socket.io-client: "npm:^4.8.1"
     typescript: "npm:^5.9.2"
     vite: "npm:^6.3.5"
@@ -2128,13 +2118,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keycode@npm:^2.1.7":
-  version: 2.2.1
-  resolution: "keycode@npm:2.2.1"
-  checksum: 10c0/e38ecbdc62f57e18ef9f7ad88aefded84e05b89115a40eea3081a7002d7c055765ddb5f5c3e2dd36ac2b2ab3901053c8286c9db082fd807b3abeb7e44034d96a
-  languageName: node
-  linkType: hard
-
 "lodash@npm:^4.17.11, lodash@npm:^4.17.20":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
@@ -2142,7 +2125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.2.0, loose-envify@npm:^1.3.1, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.1.0, loose-envify@npm:^1.2.0, loose-envify@npm:^1.3.1, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -2496,7 +2479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.4, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -2518,19 +2501,6 @@ __metadata:
   peerDependencies:
     react: ^16.14.0
   checksum: 10c0/ca146e780631672a2d57c8d77775d38f394a6cd67db30c6af7964d0b3574ef7edccb1de8d592e990b98f4f5f8d1c8460b0691f04e7a45799962a51dcbaaa1371
-  languageName: node
-  linkType: hard
-
-"react-event-listener@npm:^0.6.0":
-  version: 0.6.6
-  resolution: "react-event-listener@npm:0.6.6"
-  dependencies:
-    "@babel/runtime": "npm:^7.2.0"
-    prop-types: "npm:^15.6.0"
-    warning: "npm:^4.0.1"
-  peerDependencies:
-    react: ^16.3.0
-  checksum: 10c0/07ca093d74b7963cb6048953517f881a0fdee9b485d31dabd49814cda51543eee20e714dd423e25946984b0ac26dbcb80aaf1211b0170e9b0cfa92fa85b0984e
   languageName: node
   linkType: hard
 
@@ -2591,45 +2561,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-swipeable-views-core@npm:^0.13.7":
-  version: 0.13.7
-  resolution: "react-swipeable-views-core@npm:0.13.7"
-  dependencies:
-    "@babel/runtime": "npm:7.0.0"
-    warning: "npm:^4.0.1"
-  checksum: 10c0/ba88135ba38b739b27a0e85fd42b2ddf817adde6a441657f2d9cee84de3c1710ac3bc2cc7fa23a63c4921bafed0f819512af408552c6efd63a0833ba093eb365
-  languageName: node
-  linkType: hard
-
-"react-swipeable-views-utils@npm:^0.13.9":
-  version: 0.13.9
-  resolution: "react-swipeable-views-utils@npm:0.13.9"
-  dependencies:
-    "@babel/runtime": "npm:7.0.0"
-    keycode: "npm:^2.1.7"
-    prop-types: "npm:^15.6.0"
-    react-event-listener: "npm:^0.6.0"
-    react-swipeable-views-core: "npm:^0.13.7"
-    shallow-equal: "npm:^1.2.1"
-  checksum: 10c0/0777ff61a35011d13e68fe7c8498d1aa0a1522df0861a637c7f79ccfe7eb41d86162d8eb401a0cecf0992d1ca899e872107f75622aaa7276c70934499d577bed
-  languageName: node
-  linkType: hard
-
-"react-swipeable-views@npm:^0.13.9":
-  version: 0.13.9
-  resolution: "react-swipeable-views@npm:0.13.9"
-  dependencies:
-    "@babel/runtime": "npm:7.0.0"
-    prop-types: "npm:^15.5.4"
-    react-swipeable-views-core: "npm:^0.13.7"
-    react-swipeable-views-utils: "npm:^0.13.9"
-    warning: "npm:^4.0.1"
-  peerDependencies:
-    react: ^15.3.0 || ^16.0.0
-  checksum: 10c0/7c740ad43b93fdd27a8cd08a58acafdb1ea01cfabc8b0a085ff6b67f71f04d062d98efd5f4a817d4a6c15ac81b6b0e43e432b7eec6bd8dd9d3e092a419e74411
-  languageName: node
-  linkType: hard
-
 "react-transition-group@npm:^4.4.0":
   version: 4.4.5
   resolution: "react-transition-group@npm:4.4.5"
@@ -2663,13 +2594,6 @@ __metadata:
     indent-string: "npm:^4.0.0"
     strip-indent: "npm:^3.0.0"
   checksum: 10c0/d64a6b5c0b50eb3ddce3ab770f866658a2b9998c678f797919ceb1b586bab9259b311407280bd80b804e2a7c7539b19238ae6a2a20c843f1a7fcff21d48c2eae
-  languageName: node
-  linkType: hard
-
-"regenerator-runtime@npm:^0.12.0":
-  version: 0.12.1
-  resolution: "regenerator-runtime@npm:0.12.1"
-  checksum: 10c0/dbefbb38f5d6d55261aec1182d7c97ac93f2eec6ef9c756d9656eb5152f5cb3f8d873df020ddb4a3a8126c2ac1a3c2e534413cffe18d8f89b1c2a480a0a38601
   languageName: node
   linkType: hard
 
@@ -2804,13 +2728,6 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 10c0/aca305edfbf2383c22571cb7714f48cadc7ac95371b4b52362fb8eeffdfbc0de0669368b82b2b15978f8848f01d7114da65697e56cd8c37b0dab8c58e543f9ea
-  languageName: node
-  linkType: hard
-
-"shallow-equal@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "shallow-equal@npm:1.2.1"
-  checksum: 10c0/51e03abadd97c9ebe590547d92db9148446962a3f23a3a0fb1ba2fccab80af881eef0ff1f8ccefd3f066c0bc5a4c8ca53706194813b95c8835fa66448a843a26
   languageName: node
   linkType: hard
 
@@ -3197,15 +3114,6 @@ __metadata:
   version: 3.0.2
   resolution: "wait-for-expect@npm:3.0.2"
   checksum: 10c0/9616b82381f6571a0f3ed235a62ecdaf529816c9eef04f665ee1b8b515c3b7e1dc90d781111b6284bb777f45c4742f6c058d549a44d9d6e367ffd4d34f5f3b9e
-  languageName: node
-  linkType: hard
-
-"warning@npm:^4.0.1":
-  version: 4.0.3
-  resolution: "warning@npm:4.0.3"
-  dependencies:
-    loose-envify: "npm:^1.0.0"
-  checksum: 10c0/aebab445129f3e104c271f1637fa38e55eb25f968593e3825bd2f7a12bd58dc3738bb70dc8ec85826621d80b4acfed5a29ebc9da17397c6125864d72301b937e
   languageName: node
   linkType: hard
 
