@@ -1005,7 +1005,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.14.1":
+"@types/node@npm:^22.18.0":
   version: 22.18.0
   resolution: "@types/node@npm:22.18.0"
   dependencies:
@@ -1048,7 +1048,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^16.14.63":
+"@types/react@npm:^16.14.66":
   version: 16.14.66
   resolution: "@types/react@npm:16.14.66"
   dependencies:
@@ -1120,7 +1120,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^4.4.1":
+"@vitejs/plugin-react@npm:^4.7.0":
   version: 4.7.0
   resolution: "@vitejs/plugin-react@npm:4.7.0"
   dependencies:
@@ -1421,7 +1421,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.3.1, debug@npm:^4.3.4, debug@npm:^4.4.0":
+"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.3.1, debug@npm:^4.3.4, debug@npm:^4.4.1":
   version: 4.4.1
   resolution: "debug@npm:4.4.1"
   dependencies:
@@ -1786,12 +1786,12 @@ __metadata:
     "@testing-library/react": "npm:^9.5.0"
     "@testing-library/user-event": "npm:^7.2.1"
     "@types/jest": "npm:^25.2.3"
-    "@types/node": "npm:^22.14.1"
-    "@types/react": "npm:^16.14.63"
+    "@types/node": "npm:^22.18.0"
+    "@types/react": "npm:^16.14.66"
     "@types/react-dom": "npm:^16.9.25"
-    "@vitejs/plugin-react": "npm:^4.4.1"
+    "@vitejs/plugin-react": "npm:^4.7.0"
     clsx: "npm:^2.1.1"
-    debug: "npm:^4.4.0"
+    debug: "npm:^4.4.1"
     framer-motion: "npm:^1.11.1"
     project-name-generator: "npm:^2.1.9"
     react: "npm:^16.14.0"
@@ -1799,8 +1799,8 @@ __metadata:
     react-router-dom: "npm:^5.3.4"
     react-swipeable-views: "npm:^0.13.9"
     socket.io-client: "npm:^4.8.1"
-    typescript: "npm:^5.8.3"
-    vite: "npm:^6.3.3"
+    typescript: "npm:^5.9.2"
+    vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
@@ -3065,7 +3065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.8.3":
+"typescript@npm:^5.9.2":
   version: 5.9.2
   resolution: "typescript@npm:5.9.2"
   bin:
@@ -3075,7 +3075,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.9.2#optional!builtin<compat/typescript>":
   version: 5.9.2
   resolution: "typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"
   bin:
@@ -3138,7 +3138,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.3.3":
+"vite@npm:^6.3.5":
   version: 6.3.5
   resolution: "vite@npm:6.3.5"
   dependencies:

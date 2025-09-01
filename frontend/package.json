@@ -10,11 +10,11 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^25.2.3",
-    "@types/node": "^22.14.1",
-    "@types/react": "^16.14.63",
+    "@types/node": "^22.18.0",
+    "@types/react": "^16.14.66",
     "@types/react-dom": "^16.9.25",
     "clsx": "^2.1.1",
-    "debug": "^4.4.0",
+    "debug": "^4.4.1",
     "framer-motion": "^1.11.1",
     "project-name-generator": "^2.1.9",
     "react": "^16.14.0",
@@ -22,7 +22,7 @@
     "react-router-dom": "^5.3.4",
     "react-swipeable-views": "^0.13.9",
     "socket.io-client": "^4.8.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "scripts": {
     "start": "vite",
@@ -45,8 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.4.1",
-    "vite": "^6.3.3"
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^6.3.5"
   },
   "packageManager": "yarn@4.9.1"
 }
