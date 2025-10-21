@@ -48,7 +48,7 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:5.3.4"],\
           ["socket.io-client", "npm:4.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"],\
-          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.3.6"]\
+          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.4.1"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -1518,7 +1518,7 @@ const RAW_RUNTIME_STATE =
           ["@types/vite", null],\
           ["@vitejs/plugin-react", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:4.7.0"],\
           ["react-refresh", "npm:0.17.0"],\
-          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.3.6"]\
+          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.4.1"]\
         ],\
         "packagePeers": [\
           "@types/vite",\
@@ -2234,7 +2234,7 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:5.3.4"],\
           ["socket.io-client", "npm:4.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"],\
-          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.3.6"]\
+          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.4.1"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -3631,15 +3631,15 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["vite", [\
-      ["npm:6.3.6", {\
-        "packageLocation": "../../../.yarn/berry/cache/vite-npm-6.3.6-7d981f6e25-10c0.zip/node_modules/vite/",\
+      ["npm:6.4.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/vite-npm-6.4.1-67e9cf9ded-10c0.zip/node_modules/vite/",\
         "packageDependencies": [\
-          ["vite", "npm:6.3.6"]\
+          ["vite", "npm:6.4.1"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.3.6", {\
-        "packageLocation": "./.yarn/__virtual__/vite-virtual-7e56a30729/4/.yarn/berry/cache/vite-npm-6.3.6-7d981f6e25-10c0.zip/node_modules/vite/",\
+      ["virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.4.1", {\
+        "packageLocation": "./.yarn/__virtual__/vite-virtual-596fda6e6f/4/.yarn/berry/cache/vite-npm-6.4.1-67e9cf9ded-10c0.zip/node_modules/vite/",\
         "packageDependencies": [\
           ["@types/jiti", null],\
           ["@types/less", null],\
@@ -3668,7 +3668,7 @@ const RAW_RUNTIME_STATE =
           ["terser", null],\
           ["tinyglobby", "npm:0.2.14"],\
           ["tsx", null],\
-          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.3.6"],\
+          ["vite", "virtual:01fad240529e1d0127fa9b4ad931186ab045562018b503a3d379292ca5144a47cfceed1f9ea38ab45d2fa9325dfe0fc4659c6b402a3e8d18a874faf4e8007c18#npm:6.4.1"],\
           ["yaml", null]\
         ],\
         "packagePeers": [\
