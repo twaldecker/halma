@@ -2239,12 +2239,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["js-yaml", [\
-      ["npm:3.14.1", {\
-        "packageLocation": "../../../.yarn/berry/cache/js-yaml-npm-3.14.1-b968c6095e-10c0.zip/node_modules/js-yaml/",\
+      ["npm:3.14.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/js-yaml-npm-3.14.2-debd9d20c3-10c0.zip/node_modules/js-yaml/",\
         "packageDependencies": [\
           ["argparse", "npm:1.0.10"],\
           ["esprima", "npm:4.0.1"],\
-          ["js-yaml", "npm:3.14.1"]\
+          ["js-yaml", "npm:3.14.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3648,7 +3648,7 @@ const RAW_RUNTIME_STATE =
           ["commander", "npm:2.20.3"],\
           ["diff", "npm:4.0.2"],\
           ["glob", "npm:7.2.3"],\
-          ["js-yaml", "npm:3.14.1"],\
+          ["js-yaml", "npm:3.14.2"],\
           ["minimatch", "npm:3.1.2"],\
           ["mkdirp", "npm:0.5.6"],\
           ["resolve", "patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=c3c19d"],\
