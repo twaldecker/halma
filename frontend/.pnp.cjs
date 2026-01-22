@@ -1191,7 +1191,7 @@ const RAW_RUNTIME_STATE =
           ["css.escape", "npm:1.5.1"],\
           ["jest-diff", "npm:24.9.0"],\
           ["jest-matcher-utils", "npm:24.9.0"],\
-          ["lodash", "npm:4.17.21"],\
+          ["lodash", "npm:4.17.23"],\
           ["pretty-format", "npm:24.9.0"],\
           ["redent", "npm:3.0.0"]\
         ],\
@@ -2604,10 +2604,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["lodash", [\
-      ["npm:4.17.21", {\
-        "packageLocation": "../../../.yarn/berry/cache/lodash-npm-4.17.21-6382451519-10c0.zip/node_modules/lodash/",\
+      ["npm:4.17.23", {\
+        "packageLocation": "../../../.yarn/berry/cache/lodash-npm-4.17.23-50bdb1c01a-10c0.zip/node_modules/lodash/",\
         "packageDependencies": [\
-          ["lodash", "npm:4.17.21"]\
+          ["lodash", "npm:4.17.23"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2981,7 +2981,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/project-name-generator-npm-2.1.9-501eea14bb-10c0.zip/node_modules/project-name-generator/",\
         "packageDependencies": [\
           ["commander", "npm:6.2.1"],\
-          ["lodash", "npm:4.17.21"],\
+          ["lodash", "npm:4.17.23"],\
           ["project-name-generator", "npm:2.1.9"]\
         ],\
         "linkType": "HARD"\
